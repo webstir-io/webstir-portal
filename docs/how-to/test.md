@@ -27,7 +27,7 @@ Build the project and execute tests through the Webstir test host. By default th
 
 ### Quickstart: Vitest Provider
 1. Install the provider (once per workspace):\
-   `npm install --save-dev @webstir-io/vitest-testing`
+   Install the provider with your package manager (e.g., `pnpm add -D @webstir-io/vitest-testing`).
 2. Ensure `vitest` is available (the provider resolves the workspace dependency).
 3. Run the suite:\
    `WEBSTIR_TESTING_PROVIDER=@webstir-io/vitest-testing webstir test`

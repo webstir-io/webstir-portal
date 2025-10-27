@@ -76,18 +76,20 @@ Notes:
 - Provider overrides apply across the manifest run; mixed providers per module are not supported.
 
 ### install
-Usage: `webstir install [--dry-run|--clean]`
+Usage: `webstir install [--dry-run|--clean] [--package-manager <npm|pnpm|yarn[@version]>]`
 
 What it does:
 - Ensures the pinned `@webstir-io/webstir-frontend`, `@webstir-io/webstir-testing`, and `@webstir-io/webstir-backend` packages recorded in `framework-packages.json` are installed from the registry and present in `node_modules`.
-- Updates the workspace `package.json` entries to align with `framework-packages.json`, installs providers referenced in `webstir.providers.json`, and runs `npm install` when drift is detected.
+- Updates the workspace `package.json` entries to align with `framework-packages.json`, installs providers referenced in `webstir.providers.json`, and runs the selected package manager when drift is detected.
 - Verifies installed versions against the embedded manifest and exits with guidance if mismatches remain.
 
 Notes:
-- Run after upgrading the CLI or whenever `npm install` has modified pinned dependencies.
+- Run after upgrading the CLI or whenever your package manager has modified pinned dependencies.
 - Safe to run repeatedly; skips work when packages are already in sync.
-- Use `--dry-run` to preview which packages would be installed or updated without running `npm install` (non-zero exit code means action is required).
+- Use `--dry-run` to preview which packages would be installed or updated without running a package install (non-zero exit code means action is required).
 - Use `--clean` to remove the cached `.webstir/` workspace directory before reinstalling (cannot be combined with `--dry-run`).
+- Override the tool for a single run with `--package-manager pnpm@8` (or `-m pnpm@8`); omit `@version` to use the default Corepack-discovered binary.
+- Set `WEBSTIR_PACKAGE_MANAGER=pnpm@8 webstir install` to persist the override for the current process; leave unset to fall back on `package.json` metadata or lockfiles.
 - Ensure `.npmrc` is configured with credentials (for GitHub Packages, export `GH_PACKAGES_TOKEN`) so registry installs succeed.
 
 ### publish

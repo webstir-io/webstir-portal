@@ -6,7 +6,7 @@ Hub for the CLI and host tooling. This doc explains what the solution is, how it
 - Opinionated, zero-config build tool and project scaffolder.
  - Full-stack by default: frontend (HTML/CSS/TS) + Node API server.
 - Single CLI drives workflows: init, build, watch, test, publish, generators.
-- Minimal dependencies; pipelines are orchestrated via C#.
+- Minimal dependencies; pipelines are orchestrated via C# and pnpm is the default package manager for generated workspaces.
 
 ## Organization
 - [CLI](../reference/cli.md): Command entrypoint and help text. Wires DI and invokes workflows.
@@ -21,7 +21,7 @@ Hub for the CLI and host tooling. This doc explains what the solution is, how it
   - Worker contracts & DI: `IWorkflowWorker` (common) and `IFrontendWorker` (adds `AddPageAsync`). DI registers all workers as `IWorkflowWorker`; workflows inject `IEnumerable<IWorkflowWorker>` and filter by project mode.
 - [Tester](testing.md): xUnit harness validating CLI workflows end-to-end.
  - [Sandbox](../how-to/sandbox.md): Docker Compose setup to run a published frontend (nginx) and the template API server.
-- [Utilities](utilities/utilities.md): Repo helper scripts (format, whitespace, build, seed deploy).
+- [Utilities](utilities/utilities.md): Repo helper scripts (`utilities/scripts/*` for format, build, seed deploy).
 
 ## Technology
 - Language/Runtime: C# (.NET 9 for CLI), TypeScript for template code.

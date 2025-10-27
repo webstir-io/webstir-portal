@@ -3,7 +3,7 @@
 Follow these steps after touching the frontend hot-update pipeline.
 
 ## Automated Smoke
-- Run `./utilities/format-build.sh` (invokes TypeScript build + node tests).
+- Run `./utilities/scripts/format-build.sh` (invokes TypeScript build + node tests).
 - Start `webstir watch` in a clean workspace and confirm the daemon boots without errors.
 
 ## JavaScript/Edit Loop

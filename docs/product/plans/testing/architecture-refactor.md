@@ -28,7 +28,7 @@ The migration will streamline execution by leaning on xUnit primitives while reu
 ## Design Tenets
 - **Reuse over rewrite**: Keep CLI/process helper code; wrap existing scenarios in xUnit facts.
 - **Parallel where safe**: Organize tests into xUnit collections to isolate stateful workflows and allow read-only checks to run concurrently.
-- **Fixture-first setup**: Cache expensive setup (seed workspace, npm install) in collection fixtures; ensure deterministic cleanup.
+- **Fixture-first setup**: Cache expensive setup (seed workspace, dependency install) in collection fixtures; ensure deterministic cleanup.
 - **Lean assertions**: Replace bespoke assertions with xUnit equivalents except where domain-specific helpers add clarity.
 
 ## Target Architecture

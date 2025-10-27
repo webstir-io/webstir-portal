@@ -4,14 +4,14 @@ This guide shows how to use the Vite-powered frontend module provider with Webst
 
 ## Prerequisites
 - Workspace created with `webstir init` (fullstack or frontend).
-- Dependencies restored (`npm install`).
+- Dependencies restored (`pnpm install` by default; use your package manager as needed).
 - Provider package available: `@webstir-io/vite-frontend` (install from the registry).
 
 ## Quick Start
 1. Install the provider (once per workspace):
 
     ```bash
-    npm install --save-dev @webstir-io/vite-frontend
+    pnpm add -D @webstir-io/vite-frontend
     ```
 
 2. Update `webstir.providers.json` in the workspace root:

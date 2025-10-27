@@ -25,7 +25,7 @@ Guidance for running and troubleshooting the incremental frontend watch workflow
 
 ## Failure Recovery
 1. Restart the daemon: stop `webstir watch` with `Enter`, then run it again.
-2. If npm lockfiles drift, delete `package-lock.json` and re-run `npm install`; the watch workflow also falls back automatically when `npm ci` fails.
+2. If lockfiles drift, delete the lockfile and re-run your package manager (`pnpm install` by default); the watch workflow also falls back automatically when the install step fails.
 3. Bypass the daemon with `npx webstir-frontend build --workspace <absolute-path>` for one-off builds.
 4. When the badge stays red, inspect the last `frontend.watch` error and re-run with verbose logging if needed.
 

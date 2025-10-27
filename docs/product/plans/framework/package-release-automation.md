@@ -32,7 +32,7 @@
 3. **Automation logic**
    - Implement change detection using the new repository diff service (e.g., `git diff --name-only`) to pick targeted packages automatically.
    - Wire in version bump heuristics (labels or commit messages) with override flags.
-   - Ensure tarball rebuilds (`npm install/build/pack`) execute only for selected packages via the process runner abstraction.
+- Ensure tarball rebuilds (package manager install + build/pack; `pnpm install` by default) execute only for selected packages via the process runner abstraction.
    - Track per-package release results (bumped version, tarball path, publish status) for downstream reporting.
 
 4. **Publish integration**

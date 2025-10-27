@@ -1,6 +1,6 @@
 # Utilities
 
-Helper scripts to keep the repo tidy, build-ready, and easy to demo. These live under `utilities/` and are safe to run from the repo root.
+Helper scripts to keep the repo tidy, build-ready, and easy to demo. Core helpers now live under `utilities/scripts/` and are safe to run from the repo root.
 
 ## Scripts
 
@@ -13,17 +13,17 @@ Helper scripts to keep the repo tidy, build-ready, and easy to demo. These live 
 
 ### format-build.sh
 - Purpose: Fix whitespace, run style/analyzer formatters, build the solution, and execute frontend package tests.
-- Usage: `./utilities/format-build.sh`
+- Usage: `./utilities/scripts/format-build.sh`
 - Steps:
   - Normalizes `.cs` files and runs `dotnet format whitespace`.
   - `dotnet format style` and `dotnet format analyzers`.
   - `dotnet build Webstir.sln -v minimal`.
-  - Installs frontend npm dependencies (`npm ci`) and runs the package tests.
+- Installs frontend dependencies (`pnpm install` by default) and runs the package tests.
 - Tip: Use before committing or when CI fails style checks.
 
 ### deploy-seed.sh
 - Purpose: Create, build, test, and publish a seed project for demos and the Sandbox.
-- Usage: `./utilities/deploy-seed.sh`
+- Usage: `./utilities/scripts/deploy-seed.sh`
 - Output directories:
   - Seed root: `CLI/out/seed`
   - Build artifacts: `CLI/out/seed/build`
@@ -42,7 +42,7 @@ Helper scripts to keep the repo tidy, build-ready, and easy to demo. These live 
 ## Tips
 - Run from the repo root to ensure relative paths resolve correctly.
 - Add `format.sh --verify-no-changes` to CI to enforce style.
-- If a formatter fails unexpectedly, rerun `./utilities/format-build.sh` to normalize whitespace before `format.sh`.
+- If a formatter fails unexpectedly, rerun `./utilities/scripts/format-build.sh` to normalize whitespace before `format.sh`.
 
 ## Related Docs
 - Solution overview — [solution](../explanations/solution.md)

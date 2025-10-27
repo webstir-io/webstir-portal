@@ -36,7 +36,7 @@ WEBSTIR_TESTING_PROVIDER=@webstir-io/webstir-testing webstir test
 ```
 
 - `@webstir-io/webstir-testing` — default VM-based provider published by Webstir.
-- `@webstir-io/vitest-testing` — Vitest integration; install alongside your workspace with `npm install --save-dev @webstir-io/vitest-testing` then run `WEBSTIR_TESTING_PROVIDER=@webstir-io/vitest-testing webstir test`.
+- `@webstir-io/vitest-testing` — Vitest integration; add it with your package manager (for example, `pnpm add -D @webstir-io/vitest-testing`) then run `WEBSTIR_TESTING_PROVIDER=@webstir-io/vitest-testing webstir test`.
 
 Or add a `webstir.providers.json` entry:
 
