@@ -25,6 +25,7 @@ Common patterns:
 - `webstir publish`
 - `webstir add-page about`
 - `webstir add-test auth/login`
+- `webstir smoke`
 
 ## Commands
 
@@ -116,6 +117,18 @@ What it does:
 - Works for both frontend and backend test locations.
 - Uses the `@webstir-io/webstir-testing` CLI to write the template and keep dependencies pinned.
 
+### smoke
+Usage: `webstir smoke [workspace]`
+
+What it does:
+- Copies the embedded Accounts backend example into `CLI/out/smoke/accounts` (unless a workspace path is provided).
+- Installs dependencies, runs the standard build workflow, and loads `.webstir/backend-manifest.json`.
+- Prints the manifest location, capabilities, and route definitions; exits non-zero when no routes are present.
+
+Notes:
+- Provide a workspace path to reuse an existing project instead of copying the example.
+- Requires local access to the framework packages; configure `.npmrc` or set `GH_PACKAGES_TOKEN` when registry installs are needed.
+
 ## Dev Server & Watch
 - Serves `build/` over ASP.NET Core with an SSE endpoint for live reload.
 - Proxies API requests from `/api/*` to the Node server.
@@ -162,6 +175,7 @@ Outputs:
 - Publish for production: `webstir publish`
 - Refresh framework packages: `webstir install --clean`
 - Run tests with Vitest: `WEBSTIR_TESTING_PROVIDER=@webstir-io/vitest-testing webstir test`
+- Verify backend manifest ingestion: `webstir smoke`
 
 ## Help Output (Sample)
 ```
@@ -175,6 +189,7 @@ Commands:
   test        Build then run tests
   install     Synchronize framework packages
   publish     Produce optimized dist outputs
+  smoke       Run the backend smoke check
   add-page    Scaffold a new frontend page
   add-test    Scaffold a new test file
   help        Show help for a command

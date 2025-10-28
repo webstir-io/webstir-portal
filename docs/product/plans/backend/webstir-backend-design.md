@@ -11,6 +11,7 @@
 
 ### Module System
 - Implement ModuleLoader: discover modules via package.json, import, validate manifest
+- Ensure backend provider emits ModuleManifest using shared contract (derive defaults, validate workspace overrides) — now handled in `@webstir-io/module-contract`; focus future work on wiring routes/views/jobs via the shared helpers instead of redefining contexts
 - Implement Router: register module RouteSpecs with validation and ts-rest adapter
 - Implement ContextBuilder: assemble RequestContext per request (auth, db, env, logger)
 - Optional static asset serving behind provider flag
