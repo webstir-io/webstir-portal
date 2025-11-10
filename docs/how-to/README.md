@@ -12,6 +12,8 @@ Task-oriented docs for doing specific things.
 - [Precompression](./precompression.md)
 - [Sandbox](./sandbox.md)
 - [Add Page](./add-page.md)
+- [Add Route](./add-route.md)
+- [Add Job](./add-job.md)
 - [Add Test](./add-test.md)
 - [Synchronize Framework Packages](./package-synchronization.md)
 - [Utilities](./utilities.md)

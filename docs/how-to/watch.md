@@ -23,6 +23,25 @@ Run an initial build and tests, start dev servers, and react to changes with tar
    - Backend change → backend compile → restart Node process.
    - Shared change → rebuild affected frontend and backend targets.
 
+## Readiness & Health
+- The Node API server prints `API server running` on successful bind. The orchestrator waits for this readiness line and then probes `/api/health` before declaring the backend ready.
+
+Toggles (environment variables):
+- `WEBSTIR_BACKEND_WAIT_FOR_READY=skip` — skip waiting for the log‑based ready signal.
+- `WEBSTIR_BACKEND_READY_TIMEOUT_SECONDS` — readiness wait timeout (default 30).
+- `WEBSTIR_BACKEND_HEALTHCHECK=skip` — skip the health probe.
+- `WEBSTIR_BACKEND_HEALTH_TIMEOUT_SECONDS` — per‑attempt probe timeout (default 5).
+- `WEBSTIR_BACKEND_HEALTH_ATTEMPTS` — number of retries before failing (default 5).
+- `WEBSTIR_BACKEND_HEALTH_DELAY_MILLISECONDS` — delay between retries (default 250).
+- `WEBSTIR_BACKEND_HEALTH_PATH` — override the probe path (default `/api/health`).
+- `WEBSTIR_BACKEND_TERMINATION` — Node shutdown method during watch (`ctrlc` or `kill`; default `kill`).
+
+Examples:
+- Skip both waits in a pinch:
+  - `WEBSTIR_BACKEND_WAIT_FOR_READY=skip WEBSTIR_BACKEND_HEALTHCHECK=skip webstir watch`
+- Increase readiness timeout and health attempts:
+  - `WEBSTIR_BACKEND_READY_TIMEOUT_SECONDS=60 WEBSTIR_BACKEND_HEALTH_ATTEMPTS=10 webstir watch`
+
 ## Outputs
 - Live dev server URL printed on startup.
 - Incremental updates to `build/**` as files change.

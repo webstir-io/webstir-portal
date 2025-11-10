@@ -25,6 +25,8 @@ Common patterns:
 - `webstir publish`
 - `webstir add-page about`
 - `webstir add-test auth/login`
+- `webstir add-route users`
+- `webstir add-job cleanup`
 - `webstir smoke`
 
 ## Commands
@@ -62,6 +64,17 @@ What it does:
 - Watches `src/**` for changes and performs targeted, incremental rebuilds.
 - Restarts the Node server on backend changes; notifies browsers via SSE to reload on frontend changes.
 - Stops early with an actionable message if framework packages drift, pointing to `webstir install`.
+
+Node server readiness and health
+- Waits for the `API server running` line on startup and then probes `/api/health` before declaring ready.
+- Tuning flags (environment variables):
+  - `WEBSTIR_BACKEND_WAIT_FOR_READY=skip` — skip waiting for the readiness log line
+  - `WEBSTIR_BACKEND_READY_TIMEOUT_SECONDS` — readiness wait timeout (default 30)
+  - `WEBSTIR_BACKEND_HEALTHCHECK=skip` — skip the health probe entirely
+  - `WEBSTIR_BACKEND_HEALTH_TIMEOUT_SECONDS` — per-attempt probe timeout (default 5)
+  - `WEBSTIR_BACKEND_HEALTH_ATTEMPTS` — retries before failing (default 5)
+  - `WEBSTIR_BACKEND_HEALTH_DELAY_MILLISECONDS` — delay between retries (default 250)
+  - `WEBSTIR_BACKEND_HEALTH_PATH` — override the probe path (default `/api/health`)
 
 ### test
 Usage: `webstir test`
@@ -116,6 +129,47 @@ What it does:
 - Creates a `.test.ts` file under the nearest `tests/` folder relative to the path provided.
 - Works for both frontend and backend test locations.
 - Uses the `@webstir-io/webstir-testing` CLI to write the template and keep dependencies pinned.
+
+### add-route
+Usage: `webstir add-route <name> [--method <METHOD>] [--path <path>] [--fastify] [--project-name <project>]`
+
+What it does:
+- Adds a backend route entry to `webstir.module.routes` in `package.json`.
+- Defaults to `GET /api/<name>` when flags are omitted.
+- Populates manifest metadata (`summary`, `description`, `tags`) plus request/response schema references supplied via CLI flags. Schema references follow the `kind:name@source` format described in the [`@webstir-io/module-contract` schema guidance](https://github.com/webstir-io/module-contract#schema-references) (`kind` defaults to `zod`, `@source` optional).
+- With `--fastify`, also scaffolds `src/backend/server/routes/<name>.ts` and attempts to import/register it in `src/backend/server/fastify.ts` when present.
+
+Options:
+- `--method` HTTP method (e.g., GET, POST). Default: GET
+- `--path` Route path (e.g., /api/users). Default: `/api/<name>`
+- `--project-name <project>` Target a specific workspace project when multiple exist.
+- `--fastify` Also scaffold a Fastify handler and register it if possible
+- `--summary <text>` Adds a short human-readable summary to the manifest entry.
+- `--description <text>` Adds a longer description to the manifest entry.
+- `--tags tag1,tag2` Comma-separated tags (trimmed and deduped case-insensitively).
+- `--params-schema <ref>` Reference for route params.
+- `--query-schema <ref>` Reference for query params.
+- `--body-schema <ref>` Reference for request bodies.
+- `--headers-schema <ref>` Reference for request headers.
+- `--response-schema <ref>` Reference for the success response body.
+- `--response-status <code>` Overrides the success status code (must be 100-599).
+- `--response-headers-schema <ref>` Reference for response headers.
+
+Schema flags (`--*-schema`) expect the `kind:name@source` string noted above. Omit `kind:` for Zod schemas and skip `@source` when the schema lives beside the generator output. Invalid `kind` values or missing `name` segments cause CLI validation errors before any files are written.
+
+### add-job
+Usage: `webstir add-job <name> [--schedule <expression>] [--project-name <project>]`
+
+What it does:
+- Creates `src/backend/jobs/<name>/index.ts` and adds an entry to `webstir.module.jobs` in `package.json`.
+- The job stub exports a `run()` function and is directly executable during development.
+- Accepts optional metadata so manifest entries stay self-documenting (`description`, `priority`). Priority accepts either integers or arbitrary strings; numeric values are stored as numbers.
+
+Options:
+- `--schedule` Optional schedule string (free-form, often cron-like, e.g., `0 0 * * *`). Stored as-is in the manifest.
+- `--project-name <project>` Target a specific workspace project when multiple exist.
+- `--description <text>` Adds a longer explanation for the job alongside the manifest entry.
+- `--priority <number|string>` Stores a numeric priority when parsable or falls back to the provided string unchanged.
 
 ### smoke
 Usage: `webstir smoke [workspace]`
@@ -180,31 +234,53 @@ Outputs:
 ## Help Output (Sample)
 ```
 $ webstir --help
-webstir <command> [options]
+webstir - Modern web development build tool
+
+Usage: webstir [command] [options] [path]
 
 Commands:
-  init        Create a new project
-  build       Build frontend and backend
-  watch       Build, run servers, and watch (default)
-  test        Build then run tests
-  install     Synchronize framework packages
-  publish     Produce optimized dist outputs
-  smoke       Run the backend smoke check
-  add-page    Scaffold a new frontend page
-  add-test    Scaffold a new test file
-  help        Show help for a command
+  add-job       Add a backend job stub and manifest entry. Metadata flags are documented at https://github.com/webstir-io/webstir-portal/blob/main/docs/reference/cli.md#add-job
+  add-page      Add a new page (frontend only)
+  add-route     Add a backend route entry to the module manifest (package.json). Metadata and schema flags are documented at https://github.com/webstir-io/webstir-portal/blob/main/docs/reference/cli.md#add-route
+  add-test      Scaffold a starter test
+  build         Build the project once
+  help          Show help information
+  init          Initialize a new webstir project
+  install       Synchronize framework package dependencies from the registry
+  publish       Create production build
+  smoke         Run the accounts example through the CLI and report backend manifest routes
+  test          Run tests through the configured provider (defaults to @webstir-io/webstir-testing)
+  watch         Build and watch for changes (default)
 
-Options:
-  -h, --help     Show help
-  -v, --version  Show version
+Run 'webstir help <command>' for more information on a specific command.
+
+Path parameter:
+  You can specify a path as the last argument to run commands in a different directory.
+
+Notes:
+  Workers are injected (IWorkflowWorker); 'add-page' targets the frontend worker.
+
+Examples:
+  webstir build ./my-project         # Build project in ./my-project directory
+  webstir watch /path/to/project     # Watch project at absolute path
+  webstir init new-app               # Initialize new project in new-app directory
+  WEBSTIR_TESTING_PROVIDER=@webstir-io/vitest-testing webstir test   # Run tests with the Vitest provider
+  webstir install                    # Sync registry packages and providers
+  webstir test --help               # See provider override guidance
+  webstir smoke                    # Run the accounts smoke check and report manifest routes
 
 $ webstir help build
-Usage: webstir build [--clean]
+Build the project once
 
-Builds the frontend and backend into ./build.
+Usage: webstir build [options]
 
 Options:
-  --clean  Remove the ./build directory before compiling
+  --clean             Clean build directory before building
+
+Examples:
+  webstir build                           # Build the project
+  webstir build --clean                   # Clean build (removes build directory first)
+  webstir build ./my-app                  # Build project in ./my-app directory
 ```
 
 ## Exit Codes

@@ -16,7 +16,7 @@ See also: Engine internals — [engine](../explanations/engine.md)
 - Watch — [watch](../how-to/watch.md)
 - Test — [test](../how-to/test.md)
 - Publish — [publish](../how-to/publish.md)
-- Generators — [add-page](../how-to/add-page.md), [add-test](../how-to/add-test.md)
+- Generators — [add-page](../how-to/add-page.md), [add-route](../how-to/add-route.md), [add-job](../how-to/add-job.md), [add-test](../how-to/add-test.md)
 
 ## How They Fit In
 - CLI selects a workflow (`webstir <command>`), builds an `AppWorkspace`, then invokes the engine.
@@ -38,7 +38,7 @@ See also: Engine internals — [engine](../explanations/engine.md)
   - `webstir watch` (default when no command is provided)
   - `webstir test`
   - `webstir publish`
-  - Generators: `webstir add-page <name>`, `webstir add-test <name-or-path>`
+  - Generators: `webstir add-page <name>`, `webstir add-route <name> [--method <METHOD>] [--path <path>] [--fastify]`, `webstir add-job <name> [--schedule <expression>]`, `webstir add-test <name-or-path>`
 - Programmatic chaining: workflows may invoke others as steps (e.g., `watch` → `build` → `test` → start services).
 - CI usage: run discrete workflows with standard exit codes to gate builds.
 
@@ -82,6 +82,8 @@ See also: Engine internals — [engine](../explanations/engine.md)
 
 ### generators
 - `add-page <name>`: scaffold `index.html|css|ts` under `src/frontend/pages/<name>/`.
+- `add-route <name> [--method <METHOD>] [--path <path>] [--fastify]`: add a route to `webstir.module.routes` and optionally scaffold/register a Fastify handler.
+- `add-job <name> [--schedule <expression>]`: create `src/backend/jobs/<name>/index.ts` and add a jobs manifest entry.
 - `add-test <name-or-path>`: scaffold a `.test.ts` in the nearest `tests/`.
 
 ## Contracts & Guarantees

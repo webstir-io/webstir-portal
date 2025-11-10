@@ -33,7 +33,7 @@ This is just a project I'm doing for fun, because I love coding and engineering 
   - Core workflows: [Init](./how-to/init.md), [Build](./how-to/build.md), [Watch](./how-to/watch.md), [Test](./how-to/test.md), [Publish](./how-to/publish.md)
   - Frontend operations: [Frontend Watch Daemon](./how-to/frontend-watch.md), [HMR Validation](./how-to/hmr-validation.md), [Precompression](./how-to/precompression.md)
   - Extensibility & tooling: [Extend Pipelines with Hooks](./how-to/pipeline-hooks.md), [Synchronize Framework Packages](./how-to/package-synchronization.md), [Utilities](./how-to/utilities.md)
-  - Project scaffolding: [Add Page](./how-to/add-page.md), [Add Test](./how-to/add-test.md)
+  - Project scaffolding: [Add Page](./how-to/add-page.md), [Add Route](./how-to/add-route.md), [Add Job](./how-to/add-job.md), [Add Test](./how-to/add-test.md)
   - Environments: [Sandbox](./how-to/sandbox.md)
 
 - Reference — [README](./reference/README.md)

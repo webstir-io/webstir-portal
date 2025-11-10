@@ -47,6 +47,11 @@ Build and publish stages for HTML, CSS, JS/TS, and static assets (Images, Fonts,
 - Content hashing: esbuild manages hashes for both entries and chunks via `--entry-names` and `--chunk-names` patterns.
 - Entry points: Automatically discovered from `build/frontend/pages/*/index.js` (tsc output).
 
+### Backend (Node)
+- Source: `src/backend/**` compiled to `build/backend/**` in dev.
+- Publish: bundles backend entries with esbuild (ESM, external deps), minifies, and writes to `dist/backend/**`.
+- Sourcemaps (opt‑in): set `WEBSTIR_BACKEND_SOURCEMAPS=on` during publish to emit `.map` files under `dist/backend/**` and retain a `//# sourceMappingURL` in `index.js`.
+
 ## Assets (Images / Fonts / Media)
 - Source folders under `src/frontend/`:
   - Images: `images/**` (png, jpg, jpeg, gif, svg, webp, ico)
