@@ -84,4 +84,4 @@
 ## Open Questions / Follow-ups
 - Should route scaffolding support other backends (Express, Hono) or is Fastify the only first-party option?
 - Sequence schema flag implementation once module-contract exposes helpers.
-- Document org-wide schema naming/source conventions so CLI help can link to authoritative guidance.
+- Document org-wide schema naming/source conventions so CLI help can link to authoritative guidance. ✅ Done — see `module-contract/README.md#schema-references` and the CLI reference links.
