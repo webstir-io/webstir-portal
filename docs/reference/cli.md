@@ -75,6 +75,8 @@ Node server readiness and health
   - `WEBSTIR_BACKEND_HEALTH_ATTEMPTS` — retries before failing (default 5)
   - `WEBSTIR_BACKEND_HEALTH_DELAY_MILLISECONDS` — delay between retries (default 250)
   - `WEBSTIR_BACKEND_HEALTH_PATH` — override the probe path (default `/api/health`)
+- Automatically detects whether frontend and/or backend directories exist and only enables the relevant workers. Override with `--runtime <frontend|backend|all>` or `WEBSTIR_TEST_RUNTIME` when you need to force a mode (e.g., backend-only loops in a full-stack workspace).
+- Pass `--runtime <frontend|backend|all>` (or `-r`) to limit the tests triggered during watch to a single runtime. The CLI forwards the same value via `WEBSTIR_TEST_RUNTIME`, so scripting the behavior is as simple as `WEBSTIR_TEST_RUNTIME=backend webstir watch`.
 
 ### test
 Usage: `webstir test`
@@ -83,11 +85,13 @@ Usage: `webstir test`
 - Executes compiled frontend and backend tests, emitting structured events the .NET bridge relays.
 - Prints a pass/fail summary; integrates with CI using standard exit codes.
 - Fails fast if recorded package versions drift and directs you to `webstir install`.
+- Automatically skips frontend or backend phases when the workspace lacks those directories. Use `--runtime <frontend|backend|all>` (or `-r`) / `WEBSTIR_TEST_RUNTIME` to force a specific scope.
 
 Notes:
 - Override the provider with `WEBSTIR_TESTING_PROVIDER=<package>`; set `WEBSTIR_TESTING_PROVIDER_SPEC` if you are testing an unpublished build or local checkout.
 - Add or edit `webstir.providers.json` in the workspace root to persist provider choices alongside your code.
 - Provider overrides apply across the manifest run; mixed providers per module are not supported.
+- Use `--runtime <frontend|backend|all>` (or `-r`) to override the automatic detection. The same behavior is available via `WEBSTIR_TEST_RUNTIME=<value>` if you need to script it.
 
 ### install
 Usage: `webstir install [--dry-run|--clean] [--package-manager <npm|pnpm|yarn[@version]>]`
