@@ -10,7 +10,17 @@ Run an initial build and tests, start dev servers, and react to changes with tar
 - Default local workflow while editing.
 
 ## CLI
-- `webstir watch` (also the default when no command is provided)
+- `webstir watch [--runtime <frontend|backend|all>]` (also the default command when none is provided)
+
+## Runtime Scope
+- The CLI inspects `src/frontend` / `src/backend` and runs the workers it finds.
+- Override the automatic scope with `--runtime frontend`, `--runtime backend`, or `--runtime all` (alias `-r`).
+- The watch logs now print a one-line summary (`[watch] Runtime scope — workspace: frontend+backend, filter: backend, running: backend-only`) so you can confirm the active mode.
+- Environment toggle: `WEBSTIR_TEST_RUNTIME=<scope>` has the same effect and forwards to the test runner.
+
+Examples:
+- `webstir watch --runtime backend` — skip frontend rebuilds/reloads when you’re iterating on APIs or jobs.
+- `WEBSTIR_TEST_RUNTIME=frontend webstir watch` — force frontend-only loops even if `src/backend` exists.
 
 ## Steps
 1. Run `build`.
@@ -24,7 +34,7 @@ Run an initial build and tests, start dev servers, and react to changes with tar
    - Shared change → rebuild affected frontend and backend targets.
 
 ## Readiness & Health
-- The Node API server prints `API server running` on successful bind. The orchestrator waits for this readiness line and then probes `/api/health` before declaring the backend ready.
+- The Node API server prints `API server running` on successful bind. The orchestrator waits for this readiness line and then probes `/api/health` (alias `/healthz`) before declaring the backend ready. A dedicated `/readyz` endpoint is also available if you need an external readiness check that echoes the manifest summary.
 
 Toggles (environment variables):
 - `WEBSTIR_BACKEND_WAIT_FOR_READY=skip` — skip waiting for the log‑based ready signal.

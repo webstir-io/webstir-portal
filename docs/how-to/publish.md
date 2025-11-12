@@ -10,7 +10,7 @@ Produce optimized, fingerprinted assets in `dist/` and rewrite HTML to reference
 - Before deploying or validating with the Docker sandbox.
 
 ## CLI
-- `webstir publish`
+- `webstir publish [--runtime <frontend|backend|all>]`
 
 ## Steps
 1. Run frontend and backend pipelines in production mode.
@@ -35,6 +35,11 @@ Produce optimized, fingerprinted assets in `dist/` and rewrite HTML to reference
 - **Code-splitting**: esbuild automatically extracts shared dependencies into chunks. The browser loads these transparently via ESM imports—no manual chunk management needed.
 - Dynamic imports are not inlined by the bundler in v1. If your page (or app) uses `import('...')`, the call remains at runtime. For assets under the app shell, use absolute paths (e.g., `await import('/app/router.js')`) so they resolve correctly after publish.
 - JavaScript minification via esbuild includes identifier mangling, dead code elimination, and console stripping.
+- `--runtime` / `-r`: publish only the `frontend`, only the `backend`, or `all` (default). Handy when you need to regenerate backend bundles for a job or API patch without touching the UI artifacts.
+
+Examples:
+- `webstir publish --runtime backend` — push a new backend bundle without rebuilding pages.
+- `webstir publish --runtime frontend` — ship UI fixes when server code is unchanged.
 
 ## Errors & Exit Codes
 - Non-zero on pipeline failures or missing inputs.

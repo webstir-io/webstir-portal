@@ -11,13 +11,18 @@ Build the project and execute tests through the Webstir test host. By default th
 - In CI to gate merges and releases.
 
 ## CLI
-- `webstir test`
+- `webstir test [--runtime <frontend|backend|all>]`
 
 ## Steps
 1. Ensure build outputs are up to date (runs `build` if needed).
 2. Ensure the recorded `@webstir-io/webstir-testing` package is installed into the workspace (resolved via `webstir install`).
 3. Execute compiled frontend and backend tests via the test host and stream structured results back to the .NET bridge.
 4. Print pass/fail summary with file names for failures.
+
+### Scope the run
+- Use `--runtime frontend`, `--runtime backend`, or `--runtime all` (default) to limit which suites compile and execute.
+- The CLI logs the resolved workspace mode plus your filter so you can confirm what actually ran.
+- Environment toggle: `WEBSTIR_TEST_RUNTIME=<scope>` mirrors the flag and is convenient for scripts/CI.
 
 ## Provider Selection
 

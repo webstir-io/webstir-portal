@@ -27,6 +27,7 @@ Common patterns:
 - `webstir add-test auth/login`
 - `webstir add-route users`
 - `webstir add-job cleanup`
+- `webstir backend-inspect`
 - `webstir smoke`
 
 ## Commands
@@ -54,6 +55,7 @@ What it does:
 
 Notes:
 - `--clean` removes previous `build/` before compiling.
+- `--runtime <frontend|backend|all>` (or `-r`) runs only the selected workers. By default the CLI inspects `src/frontend` / `src/backend` and builds everything that exists.
 
 ### watch (default)
 Usage: `webstir watch`
@@ -117,6 +119,18 @@ What it does:
 - Produces optimized assets in `dist/` for each page.
 - Rewrites HTML to reference fingerprinted assets and emits a per-page `manifest.json`.
 - Minifies HTML/CSS/JS and removes comments and source maps.
+- Honors `--runtime <frontend|backend|all>` (or `-r`) so you can publish just the backend artifacts when frontend assets are unchanged.
+
+### backend-inspect
+Usage: `webstir backend-inspect [project] [--project-name <name>]`
+
+What it does:
+- Runs the backend worker (server-only) to refresh `.webstir/backend-manifest.json`.
+- Prints module metadata (contract version, capabilities, routes, jobs) so you can confirm manifest hydration without starting `watch`.
+
+Notes:
+- Accepts the positional `[project]` or `--project-name` flag when multiple projects exist in the current directory.
+- Skips frontend work entirely; run `webstir build --runtime backend` first if you only want to inspect the last build output without rebuilding.
 
 ### add-page
 Usage: `webstir add-page <name>`
@@ -174,6 +188,7 @@ Options:
 - `--project-name <project>` Target a specific workspace project when multiple exist.
 - `--description <text>` Adds a longer explanation for the job alongside the manifest entry.
 - `--priority <number|string>` Stores a numeric priority when parsable or falls back to the provided string unchanged.
+- After scaffolding, run `node build/backend/jobs/scheduler.js --list|--job <name>|--watch` (or the TypeScript equivalent via `tsx`) to inspect and execute jobs locally. The embedded watcher supports `@hourly`, `@daily`, `@weekly`, `@reboot`, and `rate(n units)` expressions; other cron strings are recorded for your production scheduler.
 
 ### smoke
 Usage: `webstir smoke [workspace]`

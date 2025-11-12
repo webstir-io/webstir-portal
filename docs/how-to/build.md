@@ -11,7 +11,7 @@ Compile and stage the app for development. Processes frontend HTML/CSS/TS and co
 - In CI to check that code compiles.
 
 ## CLI
-- `webstir build [--clean]`
+- `webstir build [--clean] [--runtime <frontend|backend|all>]`
 
 ## Steps
 1. Validate workspace structure and required inputs.
@@ -25,9 +25,15 @@ Compile and stage the app for development. Processes frontend HTML/CSS/TS and co
 ## Outputs
 - `build/frontend/**` with readable assets and page HTML (includes `build/frontend/{images|fonts|media}/**`).
 - `build/backend/index.js` compiled backend entry.
+- `.webstir/backend-manifest.json` — inspect it without starting `watch` via `webstir backend-inspect`.
 
 ## Flags
 - `--clean`: remove previous `build/**` before building.
+- `--runtime` / `-r`: limit work to `frontend`, `backend`, or `all` (default). The CLI auto-detects which folders exist, but forcing a scope speeds up backend-only loops or frontend-only sandboxes.
+
+Examples:
+- `webstir build --runtime backend` — skip frontend pipelines when touching APIs or jobs.
+- `webstir build --runtime frontend --clean` — refresh only the UI surface after deleting `build/`.
 
 ## Errors & Exit Codes
 - Non-zero on TypeScript errors, missing base HTML, or pipeline failures.
