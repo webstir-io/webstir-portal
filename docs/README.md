@@ -2,6 +2,11 @@
 
 Create a web application development strategy to maximize productivity by leveraging the power of agentic assistants.
 
+## Status
+
+- Experimental and learning-focused — this project is built to explore architectures, tooling, and agent workflows rather than to serve as a hardened production platform.
+- Expect rapid iteration and occasional breaking changes while the ecosystem matures.
+
 ## Customer Requirements
 
 - A complete, full-stack solution
@@ -54,3 +59,10 @@ This is just a project I'm doing for fun, because I love coding and engineering 
   - [Testing](./explanations/testing.md)
 
 - Product Plans — explore upcoming ideas in [docs/product/plans](./product/plans)
+
+## Community & Support
+
+- Code of Conduct: https://github.com/webstir-io/.github/blob/main/CODE_OF_CONDUCT.md
+- Contributing guidelines: https://github.com/webstir-io/.github/blob/main/CONTRIBUTING.md
+- Security policy and disclosure process: https://github.com/webstir-io/.github/blob/main/SECURITY.md
+- Support expectations and contact channels: https://github.com/webstir-io/.github/blob/main/SUPPORT.md
