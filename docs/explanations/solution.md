@@ -21,7 +21,7 @@ Hub for the CLI and host tooling. This doc explains what the solution is, how it
   - Worker contracts & DI: `IWorkflowWorker` (common) and `IFrontendWorker` (adds `AddPageAsync`). DI registers all workers as `IWorkflowWorker`; workflows inject `IEnumerable<IWorkflowWorker>` and filter by project mode.
 - [Tester](testing.md): xUnit harness validating CLI workflows end-to-end.
  - [Sandbox](../how-to/sandbox.md): Docker Compose setup to run a published frontend (nginx) and the template API server.
-- [Utilities](utilities/utilities.md): Repo helper scripts (`utilities/scripts/*` for format, build, seed deploy).
+- [Utilities](../how-to/utilities.md): Repo helper scripts (`utilities/scripts/*` for format, build, seed deploy).
 
 ## Technology
 - Language/Runtime: C# (.NET 9 for CLI), TypeScript for template code.
@@ -77,7 +77,7 @@ See also: [CLI reference](../reference/cli.md)
 ## Related Docs
 - Docs index — [overview](../README.md)
 - Templates — [templates](../reference/templates.md)
-- Testing — [tests](testing.md) and [.codex/testing.md](../../.codex/testing.md)
+- Testing — [tests](testing.md) and [orchestrator testing guide](https://github.com/webstir-io/webstir-dotnet/blob/main/.codex/testing.md)
 - Workspace & paths — [workspace](workspace.md)
 - CLI reference — [cli reference](../reference/cli.md)
 

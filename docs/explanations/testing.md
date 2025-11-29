@@ -1,6 +1,6 @@
 # Testing
 
-How we test the Webstir solution and what we lock down. This expands the high-level approach in [.codex/testing.md](../../.codex/testing.md) and focuses on the CLI/Engine.
+How we test the Webstir solution and what we lock down. This expands the high-level approach in the [orchestrator testing guide](https://github.com/webstir-io/webstir-dotnet/blob/main/.codex/testing.md) and focuses on the CLI/Engine.
 
 ## Overview
 - Goal: protect the developer experience, not chase coverage.
@@ -8,7 +8,7 @@ How we test the Webstir solution and what we lock down. This expands the high-le
 - Contract first: commands, flags, exit codes, folder structure, manifests, and dev behavior (reload, proxy).
 
 ## What We Test
-- Workflows: init → build → watch → test → publish. See [workflows](../../workflows/workflows.md).
+- Workflows: init → build → watch → test → publish. See [workflows](../reference/workflows.md).
 - Generators: `add-page`, `add-test` create expected files and integrate with builds.
 - Contracts: directory layout, build artifacts, per-page `manifest.json`, rewritten HTML links.
 - Dev behavior: dev web server serves pages, proxies `/api/*`, live reload via SSE.
@@ -71,5 +71,5 @@ How we test the Webstir solution and what we lock down. This expands the high-le
 - CLI reference — [cli](../reference/cli.md)
 - Engine internals — [engine](engine.md)
 - Pipelines — [pipelines](pipelines.md)
-- Testing — [tests](testing.md), [.codex/testing.md](../../.codex/testing.md)
+- Testing — [tests](testing.md), [orchestrator testing guide](https://github.com/webstir-io/webstir-dotnet/blob/main/.codex/testing.md)
 - Workspace and paths — [workspace](workspace.md)

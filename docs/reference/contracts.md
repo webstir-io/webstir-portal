@@ -40,7 +40,7 @@ Public, user-visible guarantees that Webstir preserves across releases. These ar
 - Serves `build/frontend/**` with SSE reload and an `/api/*` proxy to the Node server.
 - No-cache headers for HTML; short/no-cache for static assets in dev.
 - Accepts client error reports at `POST /client-errors`:
-  - Requires `Content-Type: application/json` and body <= 32KB.
+  - Requires `Content-Type: application/json` and body up to 32KB.
   - Returns `204` on success; `415` for unsupported media type; `413` if payload too large.
   - Forwards to the error tracking hook with correlation id support (`X-Correlation-ID` or payload `correlationId`).
 

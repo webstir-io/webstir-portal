@@ -58,7 +58,7 @@ This is just a project I'm doing for fun, because I love coding and engineering 
   - [Workspace](./explanations/workspace.md)
   - [Testing](./explanations/testing.md)
 
-- Product Plans — explore upcoming ideas in [docs/product/plans](./product/plans)
+- Product Plans — explore upcoming ideas in [docs/product/plans](/docs/product/plans)
 
 ## Community & Support
 

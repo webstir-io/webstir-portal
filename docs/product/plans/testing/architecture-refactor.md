@@ -53,7 +53,7 @@ The migration will streamline execution by leaning on xUnit primitives while reu
 
 ### Phase 3: Cleanup & Tooling
 - Remove unused infrastructure (legacy `Tests` runner entry point and supporting wiring) after the `Tester` migration.
-- Update developer docs (`README`, `.codex/testing.md`, internal runbooks) to reference `Tester` and `dotnet test`.
+- Update developer docs (`README`, [orchestrator testing guide](https://github.com/webstir-io/webstir-dotnet/blob/main/.codex/testing.md), internal runbooks) to reference `Tester` and `dotnet test`.
 - Adjust CI pipelines and `format-build.sh` to run the new test command.
 
 ### Phase 4: Performance Optimization

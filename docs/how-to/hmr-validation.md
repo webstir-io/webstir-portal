@@ -31,6 +31,6 @@ Follow these steps after touching the frontend hot-update pipeline.
 2. Observe the daemon logging a reload requirement and the browser performing a full refresh.
 
 ## Performance Spot Check
-- Capture `frontend.watch.javascript.build.stats` and `frontend.watch.hmr.summary` timings; ensure hot updates complete in <200 ms for the seed project.
+- Capture `frontend.watch.javascript.build.stats` and `frontend.watch.hmr.summary` timings; ensure hot updates complete in under 200 ms for the seed project.
 
-Document any deviations (especially fallback rates >10%) before shipping.
+Document any deviations (especially fallback rates above 10%) before shipping.

@@ -32,4 +32,4 @@ Guidance for running and troubleshooting the incremental frontend watch workflow
 ## Fallbacks
 - You can revert to the previous per-invocation CLI flow by running `webstir-frontend build`/`rebuild` manually.
 - Clearing `build/frontend` and `dist/frontend` is safe; the daemon will repopulate outputs on the next rebuild.
-- Hot-update stats are included in `frontend.watch.pipeline.success` diagnostics and browser console logs so you can confirm fallbacks stay rare (<10%).
+- Hot-update stats are included in `frontend.watch.pipeline.success` diagnostics and browser console logs so you can confirm fallbacks stay rare (below 10%).

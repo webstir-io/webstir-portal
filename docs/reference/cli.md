@@ -207,7 +207,7 @@ Notes:
 - Proxies API requests from `/api/*` to the Node server.
 - Clean URLs and sensible cache headers for dev vs. prod.
 - File watching uses a buffered queue to avoid thrashing on burst changes.
-- Collects client errors at `POST /client-errors` (expects JSON, <=32KB). Responds with `204` on success; forwards to the error tracking hook.
+- Collects client errors at `POST /client-errors` (expects JSON, up to 32KB). Responds with `204` on success; forwards to the error tracking hook.
 
 Change impact:
 - Frontend change → rebuild affected page/assets → broadcast reload via SSE.
@@ -310,11 +310,11 @@ Examples:
 - Commands live in `CLI/`; workflows and services live in `Engine/`.
 - `Engine/Workflows/` orchestrates `init`, `build`, `watch`, `test`, `publish`, `add-page`, `add-test`.
 - Use `AppWorkspace` and `Engine/Constants.cs` for paths. Avoid manual string manipulation; prefer helpers in `Engine.Extensions`.
-- Keep changes minimal and behavior-preserving. Follow `.codex/style.md` and `.editorconfig` when editing C#.
+- Keep changes minimal and behavior-preserving. Follow [.codex/style.md](https://github.com/webstir-io/webstir-dotnet/blob/main/.codex/style.md) and `.editorconfig` when editing C#.
 - Framework packaging commands live in `Framework/Framework.csproj`; run `dotnet run --project Framework/Framework.csproj -- packages ...` when rebuilding bundles.
 
 ## Related Docs
 - High-level solution overview — [solution](../explanations/solution.md)
 - Templates — [templates](templates.md)
-- Testing — [.codex/testing.md](../../.codex/testing.md), [tests](../explanations/testing.md)
+- Testing — [orchestrator testing guide](https://github.com/webstir-io/webstir-dotnet/blob/main/.codex/testing.md), [tests](../explanations/testing.md)
 - Workspace and paths — [workspace](../explanations/workspace.md)
