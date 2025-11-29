@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-reference/cli" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.9.2">
+<title data-rh="true">CLI | Webstir</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://webstir.io/img/logo.svg"><meta data-rh="true" name="twitter:image" content="https://webstir.io/img/logo.svg"><meta data-rh="true" property="og:url" content="https://webstir.io/docs/reference/cli"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="CLI | Webstir"><meta data-rh="true" name="description" content="Detailed reference for the webstir CLI. This expands the high-level overview in solution.md and focuses on concrete behavior, options, and outputs."><meta data-rh="true" property="og:description" content="Detailed reference for the webstir CLI. This expands the high-level overview in solution.md and focuses on concrete behavior, options, and outputs."><link data-rh="true" rel="icon" href="/img/favicon.svg"><link data-rh="true" rel="canonical" href="https://webstir.io/docs/reference/cli"><link data-rh="true" rel="alternate" href="https://webstir.io/docs/reference/cli" hreflang="en"><link data-rh="true" rel="alternate" href="https://webstir.io/docs/reference/cli" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CLI","item":"https://webstir.io/docs/reference/cli"}]}</script><link rel="stylesheet" href="/assets/css/styles.3fd03547.css">
+<script src="/assets/js/runtime~main.90f9ba2e.js" defer="defer"></script>
+<script src="/assets/js/main.2f352ebc.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/webstir.svg" alt="Webstir logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/webstir.svg" alt="Webstir logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Webstir</b></a><a class="navbar__item navbar__link" href="/docs/tutorials">Tutorials</a><a class="navbar__item navbar__link" href="/docs/how-to">How-to</a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/docs/reference">Reference</a><a class="navbar__item navbar__link" href="/docs/explanations">Explanations</a><a class="navbar__item navbar__link" href="/docs/product/plans">Product Plans</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a href="https://github.com/webstir-io" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/docs/reference"><span title="Reference" class="linkLabel_WmDU">Reference</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" href="/docs/reference/cli"><span title="CLI" class="linkLabel_WmDU">CLI</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/docs/reference/contracts"><span title="Contracts &amp; Invariants" class="linkLabel_WmDU">Contracts &amp; Invariants</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/docs/reference/frontend-manifest"><span title="Webstir Frontend Manifest" class="linkLabel_WmDU">Webstir Frontend Manifest</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/docs/reference/templates"><span title="Templates" class="linkLabel_WmDU">Templates</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/docs/reference/workflows"><span title="Workflows" class="linkLabel_WmDU">Workflows</span></a></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">CLI</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>CLI</h1></header>
+<p>Detailed reference for the <code>webstir</code> CLI. This expands the high-level overview in <a class="" href="/docs/explanations/solution">solution.md</a> and focuses on concrete behavior, options, and outputs.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="overview">Overview<a href="#overview" class="hash-link" aria-label="Direct link to Overview" title="Direct link to Overview" translate="no">​</a></h2>
+<ul>
+<li class="">Single entrypoint: <code>webstir &lt;command&gt; [options]</code>.</li>
+<li class="">Default command is <code>watch</code> when no command is provided.</li>
+<li class="">Works from the project root created by <code>init</code>.</li>
+<li class="">Orchestrates builds, the dev web server, the Node API server, and generators.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="usage">Usage<a href="#usage" class="hash-link" aria-label="Direct link to Usage" title="Direct link to Usage" translate="no">​</a></h2>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">webstir &lt;command&gt; [options]</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">webstir help [command]</span><br></span></code></pre></div></div>
+<p>Common patterns:</p>
+<ul>
+<li class=""><code>webstir init my-app</code></li>
+<li class=""><code>webstir init --client-only my-client</code></li>
+<li class=""><code>webstir build --clean</code></li>
+<li class=""><code>webstir watch</code></li>
+<li class=""><code>webstir test</code></li>
+<li class=""><code>webstir install</code></li>
+<li class=""><code>webstir publish</code></li>
+<li class=""><code>webstir add-page about</code></li>
+<li class=""><code>webstir add-test auth/login</code></li>
+<li class=""><code>webstir add-route users</code></li>
+<li class=""><code>webstir add-job cleanup</code></li>
+<li class=""><code>webstir backend-inspect</code></li>
+<li class=""><code>webstir smoke</code></li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="commands">Commands<a href="#commands" class="hash-link" aria-label="Direct link to Commands" title="Direct link to Commands" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="init">init<a href="#init" class="hash-link" aria-label="Direct link to init" title="Direct link to init" translate="no">​</a></h3>
+<p>Usage: <code>webstir init [--client-only|--server-only] [--project-name|-p &lt;name&gt;] [directory]</code></p>
+<p>What it does:</p>
+<ul>
+<li class="">Creates a new project from embedded templates (frontend, backend, shared, and types).</li>
+<li class="">Layout includes <code>src/frontend/app</code>, <code>src/frontend/pages/&lt;page&gt;</code>, <code>src/backend</code>, <code>src/shared</code>, and <code>types/</code>.</li>
+<li class="">Initializes a working dev setup that builds and runs with <code>webstir watch</code>.</li>
+</ul>
+<p>Notes:</p>
+<ul>
+<li class="">Choose one of <code>--client-only</code> or <code>--server-only</code> to limit what is scaffolded.</li>
+<li class="">Without options, generates a full-stack project.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="build">build<a href="#build" class="hash-link" aria-label="Direct link to build" title="Direct link to build" translate="no">​</a></h3>
+<p>Usage: <code>webstir build [--clean]</code></p>
+<p>What it does:</p>
+<ul>
+<li class="">Compiles TypeScript via <code>tsc --build</code> using the embedded base config.</li>
+<li class="">Processes CSS imports; copies app assets.</li>
+<li class="">Merges page HTML fragments with <code>src/frontend/app/app.html</code> and writes to <code>build/frontend/</code>.</li>
+<li class="">Compiles backend code to <code>build/backend/</code>.</li>
+</ul>
+<p>Notes:</p>
+<ul>
+<li class=""><code>--clean</code> removes previous <code>build/</code> before compiling.</li>
+<li class=""><code>--runtime &lt;frontend|backend|all&gt;</code> (or <code>-r</code>) runs only the selected workers. By default the CLI inspects <code>src/frontend</code> / <code>src/backend</code> and builds everything that exists.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="watch-default">watch (default)<a href="#watch-default" class="hash-link" aria-label="Direct link to watch (default)" title="Direct link to watch (default)" translate="no">​</a></h3>
+<p>Usage: <code>webstir watch</code></p>
+<p>What it does:</p>
+<ul>
+<li class="">Runs an initial <code>build</code> and <code>test</code> (delegating test execution to the Webstir test host).</li>
+<li class="">Starts the dev web server (serves <code>build/frontend/**</code>) and the Node API server (runs <code>build/backend/index.js</code>).</li>
+<li class="">Watches <code>src/**</code> for changes and performs targeted, incremental rebuilds.</li>
+<li class="">Restarts the Node server on backend changes; notifies browsers via SSE to reload on frontend changes.</li>
+<li class="">Stops early with an actionable message if framework packages drift, pointing to <code>webstir install</code>.</li>
+</ul>
+<p>Node server readiness and health</p>
+<ul>
+<li class="">Waits for the <code>API server running</code> line on startup and then probes <code>/api/health</code> before declaring ready.</li>
+<li class="">Tuning flags (environment variables):<!-- -->
+<ul>
+<li class=""><code>WEBSTIR_BACKEND_WAIT_FOR_READY=skip</code> — skip waiting for the readiness log line</li>
+<li class=""><code>WEBSTIR_BACKEND_READY_TIMEOUT_SECONDS</code> — readiness wait timeout (default 30)</li>
+<li class=""><code>WEBSTIR_BACKEND_HEALTHCHECK=skip</code> — skip the health probe entirely</li>
+<li class=""><code>WEBSTIR_BACKEND_HEALTH_TIMEOUT_SECONDS</code> — per-attempt probe timeout (default 5)</li>
+<li class=""><code>WEBSTIR_BACKEND_HEALTH_ATTEMPTS</code> — retries before failing (default 5)</li>
+<li class=""><code>WEBSTIR_BACKEND_HEALTH_DELAY_MILLISECONDS</code> — delay between retries (default 250)</li>
+<li class=""><code>WEBSTIR_BACKEND_HEALTH_PATH</code> — override the probe path (default <code>/api/health</code>)</li>
+</ul>
+</li>
+<li class="">Automatically detects whether frontend and/or backend directories exist and only enables the relevant workers. Override with <code>--runtime &lt;frontend|backend|all&gt;</code> or <code>WEBSTIR_TEST_RUNTIME</code> when you need to force a mode (e.g., backend-only loops in a full-stack workspace).</li>
+<li class="">Pass <code>--runtime &lt;frontend|backend|all&gt;</code> (or <code>-r</code>) to limit the tests triggered during watch to a single runtime. The CLI forwards the same value via <code>WEBSTIR_TEST_RUNTIME</code>, so scripting the behavior is as simple as <code>WEBSTIR_TEST_RUNTIME=backend webstir watch</code>.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="test">test<a href="#test" class="hash-link" aria-label="Direct link to test" title="Direct link to test" translate="no">​</a></h3>
+<p>Usage: <code>webstir test</code></p>
+<ul>
+<li class="">Builds the project, ensures the configured test provider is installed (defaults to <code>@webstir-io/webstir-testing</code>, overridable via <code>WEBSTIR_TESTING_PROVIDER</code> or <code>webstir.providers.json</code>), then invokes the Webstir test host.</li>
+<li class="">Executes compiled frontend and backend tests, emitting structured events the .NET bridge relays.</li>
+<li class="">Prints a pass/fail summary; integrates with CI using standard exit codes.</li>
+<li class="">Fails fast if recorded package versions drift and directs you to <code>webstir install</code>.</li>
+<li class="">Automatically skips frontend or backend phases when the workspace lacks those directories. Use <code>--runtime &lt;frontend|backend|all&gt;</code> (or <code>-r</code>) / <code>WEBSTIR_TEST_RUNTIME</code> to force a specific scope.</li>
+</ul>
+<p>Notes:</p>
+<ul>
+<li class="">Override the provider with <code>WEBSTIR_TESTING_PROVIDER=&lt;package&gt;</code>; set <code>WEBSTIR_TESTING_PROVIDER_SPEC</code> if you are testing an unpublished build or local checkout.</li>
+<li class="">Add or edit <code>webstir.providers.json</code> in the workspace root to persist provider choices alongside your code.</li>
+<li class="">Provider overrides apply across the manifest run; mixed providers per module are not supported.</li>
+<li class="">Use <code>--runtime &lt;frontend|backend|all&gt;</code> (or <code>-r</code>) to override the automatic detection. The same behavior is available via <code>WEBSTIR_TEST_RUNTIME=&lt;value&gt;</code> if you need to script it.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="install">install<a href="#install" class="hash-link" aria-label="Direct link to install" title="Direct link to install" translate="no">​</a></h3>
+<p>Usage: <code>webstir install [--dry-run|--clean] [--package-manager &lt;npm|pnpm|yarn[@version]&gt;]</code></p>
+<p>What it does:</p>
+<ul>
+<li class="">Ensures the pinned <code>@webstir-io/webstir-frontend</code>, <code>@webstir-io/webstir-testing</code>, and <code>@webstir-io/webstir-backend</code> packages recorded in <code>framework-packages.json</code> are installed from the registry and present in <code>node_modules</code>.</li>
+<li class="">Updates the workspace <code>package.json</code> entries to align with <code>framework-packages.json</code>, installs providers referenced in <code>webstir.providers.json</code>, and runs the selected package manager when drift is detected.</li>
+<li class="">Verifies installed versions against the embedded manifest and exits with guidance if mismatches remain.</li>
+</ul>
+<p>Notes:</p>
+<ul>
+<li class="">Run after upgrading the CLI or whenever your package manager has modified pinned dependencies.</li>
+<li class="">Safe to run repeatedly; skips work when packages are already in sync.</li>
+<li class="">Use <code>--dry-run</code> to preview which packages would be installed or updated without running a package install (non-zero exit code means action is required).</li>
+<li class="">Use <code>--clean</code> to remove the cached <code>.webstir/</code> workspace directory before reinstalling (cannot be combined with <code>--dry-run</code>).</li>
+<li class="">Override the tool for a single run with <code>--package-manager pnpm@8</code> (or <code>-m pnpm@8</code>); omit <code>@version</code> to use the default Corepack-discovered binary.</li>
+<li class="">Set <code>WEBSTIR_PACKAGE_MANAGER=pnpm@8 webstir install</code> to persist the override for the current process; leave unset to fall back on <code>package.json</code> metadata or lockfiles.</li>
+<li class="">Ensure <code>.npmrc</code> is configured with credentials (for GitHub Packages, export <code>GH_PACKAGES_TOKEN</code>) so registry installs succeed.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="publish">publish<a href="#publish" class="hash-link" aria-label="Direct link to publish" title="Direct link to publish" translate="no">​</a></h3>
+<p>Usage: <code>webstir publish</code></p>
+<p>What it does:</p>
+<ul>
+<li class="">Produces optimized assets in <code>dist/</code> for each page.</li>
+<li class="">Rewrites HTML to reference fingerprinted assets and emits a per-page <code>manifest.json</code>.</li>
+<li class="">Minifies HTML/CSS/JS and removes comments and source maps.</li>
+<li class="">Honors <code>--runtime &lt;frontend|backend|all&gt;</code> (or <code>-r</code>) so you can publish just the backend artifacts when frontend assets are unchanged.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="backend-inspect">backend-inspect<a href="#backend-inspect" class="hash-link" aria-label="Direct link to backend-inspect" title="Direct link to backend-inspect" translate="no">​</a></h3>
+<p>Usage: <code>webstir backend-inspect [project] [--project-name &lt;name&gt;]</code></p>
+<p>What it does:</p>
+<ul>
+<li class="">Runs the backend worker (server-only) to refresh <code>.webstir/backend-manifest.json</code>.</li>
+<li class="">Prints module metadata (contract version, capabilities, routes, jobs) so you can confirm manifest hydration without starting <code>watch</code>.</li>
+</ul>
+<p>Notes:</p>
+<ul>
+<li class="">Accepts the positional <code>[project]</code> or <code>--project-name</code> flag when multiple projects exist in the current directory.</li>
+<li class="">Skips frontend work entirely; run <code>webstir build --runtime backend</code> first if you only want to inspect the last build output without rebuilding.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="add-page">add-page<a href="#add-page" class="hash-link" aria-label="Direct link to add-page" title="Direct link to add-page" translate="no">​</a></h3>
+<p>Usage: <code>webstir add-page &lt;name&gt;</code></p>
+<p>What it does:</p>
+<ul>
+<li class="">Scaffolds <code>index.html</code>, <code>index.css</code>, and <code>index.ts</code> in <code>src/frontend/pages/&lt;name&gt;/</code>.</li>
+<li class="">Ready to build and serve without extra configuration.</li>
+<li class="">Delegates to the <code>@webstir-io/webstir-frontend</code> CLI so the scaffold matches the current framework templates.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="add-test">add-test<a href="#add-test" class="hash-link" aria-label="Direct link to add-test" title="Direct link to add-test" translate="no">​</a></h3>
+<p>Usage: <code>webstir add-test &lt;name-or-path&gt;</code></p>
+<p>What it does:</p>
+<ul>
+<li class="">Creates a <code>.test.ts</code> file under the nearest <code>tests/</code> folder relative to the path provided.</li>
+<li class="">Works for both frontend and backend test locations.</li>
+<li class="">Uses the <code>@webstir-io/webstir-testing</code> CLI to write the template and keep dependencies pinned.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="add-route">add-route<a href="#add-route" class="hash-link" aria-label="Direct link to add-route" title="Direct link to add-route" translate="no">​</a></h3>
+<p>Usage: <code>webstir add-route &lt;name&gt; [--method &lt;METHOD&gt;] [--path &lt;path&gt;] [--fastify] [--project-name &lt;project&gt;]</code></p>
+<p>What it does:</p>
+<ul>
+<li class="">Adds a backend route entry to <code>webstir.module.routes</code> in <code>package.json</code>.</li>
+<li class="">Defaults to <code>GET /api/&lt;name&gt;</code> when flags are omitted.</li>
+<li class="">Populates manifest metadata (<code>summary</code>, <code>description</code>, <code>tags</code>) plus request/response schema references supplied via CLI flags. Schema references follow the <code>kind:name@source</code> format described in the <a href="https://github.com/webstir-io/module-contract#schema-references" target="_blank" rel="noopener noreferrer" class=""><code>@webstir-io/module-contract</code> schema guidance</a> (<code>kind</code> defaults to <code>zod</code>, <code>@source</code> optional).</li>
+<li class="">With <code>--fastify</code>, also scaffolds <code>src/backend/server/routes/&lt;name&gt;.ts</code> and attempts to import/register it in <code>src/backend/server/fastify.ts</code> when present.</li>
+</ul>
+<p>Options:</p>
+<ul>
+<li class=""><code>--method</code> HTTP method (e.g., GET, POST). Default: GET</li>
+<li class=""><code>--path</code> Route path (e.g., /api/users). Default: <code>/api/&lt;name&gt;</code></li>
+<li class=""><code>--project-name &lt;project&gt;</code> Target a specific workspace project when multiple exist.</li>
+<li class=""><code>--fastify</code> Also scaffold a Fastify handler and register it if possible</li>
+<li class=""><code>--summary &lt;text&gt;</code> Adds a short human-readable summary to the manifest entry.</li>
+<li class=""><code>--description &lt;text&gt;</code> Adds a longer description to the manifest entry.</li>
+<li class=""><code>--tags tag1,tag2</code> Comma-separated tags (trimmed and deduped case-insensitively).</li>
+<li class=""><code>--params-schema &lt;ref&gt;</code> Reference for route params.</li>
+<li class=""><code>--query-schema &lt;ref&gt;</code> Reference for query params.</li>
+<li class=""><code>--body-schema &lt;ref&gt;</code> Reference for request bodies.</li>
+<li class=""><code>--headers-schema &lt;ref&gt;</code> Reference for request headers.</li>
+<li class=""><code>--response-schema &lt;ref&gt;</code> Reference for the success response body.</li>
+<li class=""><code>--response-status &lt;code&gt;</code> Overrides the success status code (must be 100-599).</li>
+<li class=""><code>--response-headers-schema &lt;ref&gt;</code> Reference for response headers.</li>
+</ul>
+<p>Schema flags (<code>--*-schema</code>) expect the <code>kind:name@source</code> string noted above. Omit <code>kind:</code> for Zod schemas and skip <code>@source</code> when the schema lives beside the generator output. Invalid <code>kind</code> values or missing <code>name</code> segments cause CLI validation errors before any files are written.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="add-job">add-job<a href="#add-job" class="hash-link" aria-label="Direct link to add-job" title="Direct link to add-job" translate="no">​</a></h3>
+<p>Usage: <code>webstir add-job &lt;name&gt; [--schedule &lt;expression&gt;] [--project-name &lt;project&gt;]</code></p>
+<p>What it does:</p>
+<ul>
+<li class="">Creates <code>src/backend/jobs/&lt;name&gt;/index.ts</code> and adds an entry to <code>webstir.module.jobs</code> in <code>package.json</code>.</li>
+<li class="">The job stub exports a <code>run()</code> function and is directly executable during development.</li>
+<li class="">Accepts optional metadata so manifest entries stay self-documenting (<code>description</code>, <code>priority</code>). Priority accepts either integers or arbitrary strings; numeric values are stored as numbers.</li>
+</ul>
+<p>Options:</p>
+<ul>
+<li class=""><code>--schedule</code> Optional schedule string (free-form, often cron-like, e.g., <code>0 0 * * *</code>). Stored as-is in the manifest.</li>
+<li class=""><code>--project-name &lt;project&gt;</code> Target a specific workspace project when multiple exist.</li>
+<li class=""><code>--description &lt;text&gt;</code> Adds a longer explanation for the job alongside the manifest entry.</li>
+<li class=""><code>--priority &lt;number|string&gt;</code> Stores a numeric priority when parsable or falls back to the provided string unchanged.</li>
+<li class="">After scaffolding, run <code>node build/backend/jobs/scheduler.js --list|--job &lt;name&gt;|--watch</code> (or the TypeScript equivalent via <code>tsx</code>) to inspect and execute jobs locally. The embedded watcher supports <code>@hourly</code>, <code>@daily</code>, <code>@weekly</code>, <code>@reboot</code>, and <code>rate(n units)</code> expressions; other cron strings are recorded for your production scheduler.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="smoke">smoke<a href="#smoke" class="hash-link" aria-label="Direct link to smoke" title="Direct link to smoke" translate="no">​</a></h3>
+<p>Usage: <code>webstir smoke [workspace]</code></p>
+<p>What it does:</p>
+<ul>
+<li class="">Copies the embedded Accounts backend example into <code>CLI/out/smoke/accounts</code> (unless a workspace path is provided).</li>
+<li class="">Installs dependencies, runs the standard build workflow, and loads <code>.webstir/backend-manifest.json</code>.</li>
+<li class="">Prints the manifest location, capabilities, and route definitions; exits non-zero when no routes are present.</li>
+</ul>
+<p>Notes:</p>
+<ul>
+<li class="">Provide a workspace path to reuse an existing project instead of copying the example.</li>
+<li class="">Requires local access to the framework packages; configure <code>.npmrc</code> or set <code>GH_PACKAGES_TOKEN</code> when registry installs are needed.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="dev-server--watch">Dev Server &amp; Watch<a href="#dev-server--watch" class="hash-link" aria-label="Direct link to Dev Server &amp; Watch" title="Direct link to Dev Server &amp; Watch" translate="no">​</a></h2>
+<ul>
+<li class="">Serves <code>build/</code> over ASP.NET Core with an SSE endpoint for live reload.</li>
+<li class="">Proxies API requests from <code>/api/*</code> to the Node server.</li>
+<li class="">Clean URLs and sensible cache headers for dev vs. prod.</li>
+<li class="">File watching uses a buffered queue to avoid thrashing on burst changes.</li>
+<li class="">Collects client errors at <code>POST /client-errors</code> (expects JSON, up to 32KB). Responds with <code>204</code> on success; forwards to the error tracking hook.</li>
+</ul>
+<p>Change impact:</p>
+<ul>
+<li class="">Frontend change → rebuild affected page/assets → broadcast reload via SSE.</li>
+<li class="">Backend change → rebuild backend → restart Node process.</li>
+<li class="">Shared change → rebuild both sides that depend on shared modules.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="build--publish-pipelines">Build &amp; Publish Pipelines<a href="#build--publish-pipelines" class="hash-link" aria-label="Direct link to Build &amp; Publish Pipelines" title="Direct link to Build &amp; Publish Pipelines" translate="no">​</a></h2>
+<p>HTML:</p>
+<ul>
+<li class="">Page HTML merges into <code>src/frontend/app/app.html</code> (requires a <code>&lt;main&gt;</code> element) and is written to <code>build/frontend/pages/&lt;page&gt;/index.html</code> in dev.</li>
+<li class="">In publish, HTML is minified and rewritten to reference fingerprinted assets listed in a per-page manifest.</li>
+</ul>
+<p>CSS:</p>
+<ul>
+<li class="">Resolves <code>@import</code> and URL references; copies assets.</li>
+<li class="">In publish, supports optional CSS Modules, autoprefixing, and minification.</li>
+</ul>
+<p>JavaScript/TypeScript:</p>
+<ul>
+<li class="">Uses <code>tsc --build</code> with an embedded <code>base.tsconfig.json</code>.</li>
+<li class="">ESM-only module graph.</li>
+<li class="">Tree-shakes and minifies in publish.</li>
+</ul>
+<p>Outputs:</p>
+<ul>
+<li class="">Dev: <code>build/frontend/**</code>, <code>build/backend/**</code> with readable output and live-reload.</li>
+<li class="">Prod: <code>dist/frontend/pages/&lt;page&gt;/index.&lt;timestamp&gt;.{css|js}</code>, HTML with rewritten links, and a per-page <code>manifest.json</code>.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="project-layout">Project Layout<a href="#project-layout" class="hash-link" aria-label="Direct link to Project Layout" title="Direct link to Project Layout" translate="no">​</a></h2>
+<ul>
+<li class="">Base HTML: <code>src/frontend/app/app.html</code> contains a <code>&lt;main&gt;</code> used for page composition.</li>
+<li class="">Pages: <code>src/frontend/pages/&lt;page&gt;/index.html|css|ts</code>.</li>
+<li class="">App assets: <code>src/frontend/app/*</code> (copied as-is to <code>build/</code>).</li>
+<li class="">Shared types/modules: <code>src/shared/</code>.</li>
+<li class="">Backend entry: <code>src/backend/index.ts</code> → <code>build/backend/index.js</code>.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="examples">Examples<a href="#examples" class="hash-link" aria-label="Direct link to Examples" title="Direct link to Examples" translate="no">​</a></h2>
+<ul>
+<li class="">Create a full-stack app: <code>webstir init my-app &amp;&amp; cd my-app &amp;&amp; webstir watch</code></li>
+<li class="">Frontend-only app: <code>webstir init --client-only my-client &amp;&amp; cd my-client &amp;&amp; webstir watch</code></li>
+<li class="">Clean build: <code>webstir build --clean</code></li>
+<li class="">Add a page: <code>webstir add-page about &amp;&amp; webstir watch</code></li>
+<li class="">Publish for production: <code>webstir publish</code></li>
+<li class="">Refresh framework packages: <code>webstir install --clean</code></li>
+<li class="">Run tests with Vitest: <code>WEBSTIR_TESTING_PROVIDER=@webstir-io/vitest-testing webstir test</code></li>
+<li class="">Verify backend manifest ingestion: <code>webstir smoke</code></li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="help-output-sample">Help Output (Sample)<a href="#help-output-sample" class="hash-link" aria-label="Direct link to Help Output (Sample)" title="Direct link to Help Output (Sample)" translate="no">​</a></h2>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">$ webstir --help</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">webstir - Modern web development build tool</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">Usage: webstir [command] [options] [path]</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">Commands:</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  add-job       Add a backend job stub and manifest entry. Metadata flags are documented at https://github.com/webstir-io/webstir-portal/blob/main/docs/reference/cli.md#add-job</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  add-page      Add a new page (frontend only)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  add-route     Add a backend route entry to the module manifest (package.json). Metadata and schema flags are documented at https://github.com/webstir-io/webstir-portal/blob/main/docs/reference/cli.md#add-route</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  add-test      Scaffold a starter test</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  build         Build the project once</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  help          Show help information</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  init          Initialize a new webstir project</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  install       Synchronize framework package dependencies from the registry</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  publish       Create production build</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  smoke         Run the accounts example through the CLI and report backend manifest routes</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  test          Run tests through the configured provider (defaults to @webstir-io/webstir-testing)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  watch         Build and watch for changes (default)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">Run &#x27;webstir help &lt;command&gt;&#x27; for more information on a specific command.</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">Path parameter:</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  You can specify a path as the last argument to run commands in a different directory.</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">Notes:</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  Workers are injected (IWorkflowWorker); &#x27;add-page&#x27; targets the frontend worker.</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">Examples:</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  webstir build ./my-project         # Build project in ./my-project directory</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  webstir watch /path/to/project     # Watch project at absolute path</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  webstir init new-app               # Initialize new project in new-app directory</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  WEBSTIR_TESTING_PROVIDER=@webstir-io/vitest-testing webstir test   # Run tests with the Vitest provider</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  webstir install                    # Sync registry packages and providers</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  webstir test --help               # See provider override guidance</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  webstir smoke                    # Run the accounts smoke check and report manifest routes</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">$ webstir help build</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">Build the project once</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">Usage: webstir build [options]</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">Options:</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  --clean             Clean build directory before building</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">Examples:</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  webstir build                           # Build the project</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  webstir build --clean                   # Clean build (removes build directory first)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  webstir build ./my-app                  # Build project in ./my-app directory</span><br></span></code></pre></div></div>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="exit-codes">Exit Codes<a href="#exit-codes" class="hash-link" aria-label="Direct link to Exit Codes" title="Direct link to Exit Codes" translate="no">​</a></h2>
+<ul>
+<li class=""><code>0</code>: Success</li>
+<li class="">Non-zero: Error (build failure, test failure, invalid arguments, or runtime error)</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="contributing-notes">Contributing Notes<a href="#contributing-notes" class="hash-link" aria-label="Direct link to Contributing Notes" title="Direct link to Contributing Notes" translate="no">​</a></h2>
+<ul>
+<li class="">Commands live in <code>CLI/</code>; workflows and services live in <code>Engine/</code>.</li>
+<li class=""><code>Engine/Workflows/</code> orchestrates <code>init</code>, <code>build</code>, <code>watch</code>, <code>test</code>, <code>publish</code>, <code>add-page</code>, <code>add-test</code>.</li>
+<li class="">Use <code>AppWorkspace</code> and <code>Engine/Constants.cs</code> for paths. Avoid manual string manipulation; prefer helpers in <code>Engine.Extensions</code>.</li>
+<li class="">Keep changes minimal and behavior-preserving. Follow <a href="https://github.com/webstir-io/webstir-dotnet/blob/main/.codex/style.md" target="_blank" rel="noopener noreferrer" class="">.codex/style.md</a> and <code>.editorconfig</code> when editing C#.</li>
+<li class="">Framework packaging commands live in <code>Framework/Framework.csproj</code>; run <code>dotnet run --project Framework/Framework.csproj -- packages ...</code> when rebuilding bundles.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="related-docs">Related Docs<a href="#related-docs" class="hash-link" aria-label="Direct link to Related Docs" title="Direct link to Related Docs" translate="no">​</a></h2>
+<ul>
+<li class="">High-level solution overview — <a class="" href="/docs/explanations/solution">solution</a></li>
+<li class="">Templates — <a class="" href="/docs/reference/templates">templates</a></li>
+<li class="">Testing — <a href="https://github.com/webstir-io/webstir-dotnet/blob/main/.codex/testing.md" target="_blank" rel="noopener noreferrer" class="">orchestrator testing guide</a>, <a class="" href="/docs/explanations/testing">tests</a></li>
+<li class="">Workspace and paths — <a class="" href="/docs/explanations/workspace">workspace</a></li>
+</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href="https://github.com/webstir-io/webstir-portal/edit/main/docs/reference/cli.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"><span class="theme-last-updated">Last updated<!-- --> on <b><time datetime="2025-11-29T22:16:04.000Z" itemprop="dateModified">Nov 29, 2025</time></b></span></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs/reference"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Reference</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/docs/reference/contracts"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Contracts &amp; Invariants</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#overview" class="table-of-contents__link toc-highlight">Overview</a></li><li><a href="#usage" class="table-of-contents__link toc-highlight">Usage</a></li><li><a href="#commands" class="table-of-contents__link toc-highlight">Commands</a><ul><li><a href="#init" class="table-of-contents__link toc-highlight">init</a></li><li><a href="#build" class="table-of-contents__link toc-highlight">build</a></li><li><a href="#watch-default" class="table-of-contents__link toc-highlight">watch (default)</a></li><li><a href="#test" class="table-of-contents__link toc-highlight">test</a></li><li><a href="#install" class="table-of-contents__link toc-highlight">install</a></li><li><a href="#publish" class="table-of-contents__link toc-highlight">publish</a></li><li><a href="#backend-inspect" class="table-of-contents__link toc-highlight">backend-inspect</a></li><li><a href="#add-page" class="table-of-contents__link toc-highlight">add-page</a></li><li><a href="#add-test" class="table-of-contents__link toc-highlight">add-test</a></li><li><a href="#add-route" class="table-of-contents__link toc-highlight">add-route</a></li><li><a href="#add-job" class="table-of-contents__link toc-highlight">add-job</a></li><li><a href="#smoke" class="table-of-contents__link toc-highlight">smoke</a></li></ul></li><li><a href="#dev-server--watch" class="table-of-contents__link toc-highlight">Dev Server &amp; Watch</a></li><li><a href="#build--publish-pipelines" class="table-of-contents__link toc-highlight">Build &amp; Publish Pipelines</a></li><li><a href="#project-layout" class="table-of-contents__link toc-highlight">Project Layout</a></li><li><a href="#examples" class="table-of-contents__link toc-highlight">Examples</a></li><li><a href="#help-output-sample" class="table-of-contents__link toc-highlight">Help Output (Sample)</a></li><li><a href="#exit-codes" class="table-of-contents__link toc-highlight">Exit Codes</a></li><li><a href="#contributing-notes" class="table-of-contents__link toc-highlight">Contributing Notes</a></li><li><a href="#related-docs" class="table-of-contents__link toc-highlight">Related Docs</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Docs</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/docs/tutorials/getting-started">Getting Started</a></li><li class="footer__item"><a class="footer__link-item" href="/docs/reference/workflows">CLI Workflows</a></li><li class="footer__item"><a class="footer__link-item" href="/docs/how-to">How-to Guides</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/webstir-io/.github/blob/main/CODE_OF_CONDUCT.md" target="_blank" rel="noopener noreferrer" class="footer__link-item">Code of Conduct<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/webstir-io/.github/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer" class="footer__link-item">Contributing<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/webstir-io/.github/blob/main/SUPPORT.md" target="_blank" rel="noopener noreferrer" class="footer__link-item">Support<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/webstir-io" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">© 2025 Webstir.</div></div></div></footer></div>
+</body>
+</html>

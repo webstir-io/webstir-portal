@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-reference/workflows" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.9.2">
+<title data-rh="true">Workflows | Webstir</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://webstir.io/img/logo.svg"><meta data-rh="true" name="twitter:image" content="https://webstir.io/img/logo.svg"><meta data-rh="true" property="og:url" content="https://webstir.io/docs/reference/workflows"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Workflows | Webstir"><meta data-rh="true" name="description" content="End-to-end flows driven by the CLI. Workflows coordinate workers, pipelines, and services to deliver a complete task (init → build → watch/test → publish). They are orchestration only; low-level logic lives in engine components."><meta data-rh="true" property="og:description" content="End-to-end flows driven by the CLI. Workflows coordinate workers, pipelines, and services to deliver a complete task (init → build → watch/test → publish). They are orchestration only; low-level logic lives in engine components."><link data-rh="true" rel="icon" href="/img/favicon.svg"><link data-rh="true" rel="canonical" href="https://webstir.io/docs/reference/workflows"><link data-rh="true" rel="alternate" href="https://webstir.io/docs/reference/workflows" hreflang="en"><link data-rh="true" rel="alternate" href="https://webstir.io/docs/reference/workflows" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Workflows","item":"https://webstir.io/docs/reference/workflows"}]}</script><link rel="stylesheet" href="/assets/css/styles.3fd03547.css">
+<script src="/assets/js/runtime~main.90f9ba2e.js" defer="defer"></script>
+<script src="/assets/js/main.2f352ebc.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/webstir.svg" alt="Webstir logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/webstir.svg" alt="Webstir logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Webstir</b></a><a class="navbar__item navbar__link" href="/docs/tutorials">Tutorials</a><a class="navbar__item navbar__link" href="/docs/how-to">How-to</a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/docs/reference">Reference</a><a class="navbar__item navbar__link" href="/docs/explanations">Explanations</a><a class="navbar__item navbar__link" href="/docs/product/plans">Product Plans</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a href="https://github.com/webstir-io" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/docs/reference"><span title="Reference" class="linkLabel_WmDU">Reference</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/docs/reference/cli"><span title="CLI" class="linkLabel_WmDU">CLI</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/docs/reference/contracts"><span title="Contracts &amp; Invariants" class="linkLabel_WmDU">Contracts &amp; Invariants</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/docs/reference/frontend-manifest"><span title="Webstir Frontend Manifest" class="linkLabel_WmDU">Webstir Frontend Manifest</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/docs/reference/templates"><span title="Templates" class="linkLabel_WmDU">Templates</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" href="/docs/reference/workflows"><span title="Workflows" class="linkLabel_WmDU">Workflows</span></a></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Workflows</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Workflows</h1></header>
+<p>End-to-end flows driven by the CLI. Workflows coordinate workers, pipelines, and services to deliver a complete task (init → build → watch/test → publish). They are orchestration only; low-level logic lives in engine components.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="what-they-are">What They Are<a href="#what-they-are" class="hash-link" aria-label="Direct link to What They Are" title="Direct link to What They Are" translate="no">​</a></h2>
+<ul>
+<li class="">Thin coordinators that call workers and services in a defined order.</li>
+<li class="">Source of truth for user-visible behavior, exit codes, and logs.</li>
+<li class="">Deterministic: same inputs produce the same outputs.</li>
+<li class="">Composable: some workflows run others (e.g., <code>watch</code> runs <code>build</code> then <code>test</code>).</li>
+</ul>
+<p>See also: Engine internals — <a class="" href="/docs/explanations/engine">engine</a></p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="workflow-docs">Workflow Docs<a href="#workflow-docs" class="hash-link" aria-label="Direct link to Workflow Docs" title="Direct link to Workflow Docs" translate="no">​</a></h2>
+<ul>
+<li class="">Init — <a class="" href="/docs/how-to/init">init</a></li>
+<li class="">Build — <a class="" href="/docs/how-to/build">build</a></li>
+<li class="">Watch — <a class="" href="/docs/how-to/watch">watch</a></li>
+<li class="">Test — <a class="" href="/docs/how-to/test">test</a></li>
+<li class="">Publish — <a class="" href="/docs/how-to/publish">publish</a></li>
+<li class="">Generators — <a class="" href="/docs/how-to/add-page">add-page</a>, <a class="" href="/docs/how-to/add-route">add-route</a>, <a class="" href="/docs/how-to/add-job">add-job</a>, <a class="" href="/docs/how-to/add-test">add-test</a></li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="how-they-fit-in">How They Fit In<a href="#how-they-fit-in" class="hash-link" aria-label="Direct link to How They Fit In" title="Direct link to How They Fit In" translate="no">​</a></h2>
+<ul>
+<li class="">CLI selects a workflow (<code>webstir &lt;command&gt;</code>), builds an <code>AppWorkspace</code>, then invokes the engine.</li>
+<li class="">Workflows call workers (frontend/backend/shared) and pipelines (HTML/CSS/TS) to do the actual work.</li>
+<li class="">Long-running behavior (serving, watching, proxying, reload) is handled by services. See <a class="" href="/docs/explanations/services">services</a> and <a class="" href="/docs/explanations/servers">servers</a>.</li>
+<li class="">All paths and file names come from the workspace and constants. See <a class="" href="/docs/explanations/workspace">workspace</a>.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="workers--di">Workers &amp; DI<a href="#workers--di" class="hash-link" aria-label="Direct link to Workers &amp; DI" title="Direct link to Workers &amp; DI" translate="no">​</a></h3>
+<ul>
+<li class="">Contracts:<!-- -->
+<ul>
+<li class=""><code>IWorkflowWorker</code>: common worker contract (BuildOrder, InitAsync, BuildAsync, PublishAsync).</li>
+<li class=""><code>IFrontendWorker</code>: extends <code>IWorkflowWorker</code> with <code>AddPageAsync</code> for page scaffolding.</li>
+</ul>
+</li>
+<li class="">DI pattern: all workers are registered as <code>IWorkflowWorker</code> and workflows inject <code>IEnumerable&lt;IWorkflowWorker&gt;</code>.</li>
+<li class="">Filtering: workflows choose which workers to run based on project mode (client-only, server-only, fullstack). The <code>add-page</code> workflow resolves the single <code>IFrontendWorker</code>, which now shells out to <code>webstir-frontend add-page</code> for scaffolding.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="initiation">Initiation<a href="#initiation" class="hash-link" aria-label="Direct link to Initiation" title="Direct link to Initiation" translate="no">​</a></h2>
+<ul>
+<li class="">CLI commands (primary):<!-- -->
+<ul>
+<li class=""><code>webstir init [options] [directory]</code></li>
+<li class=""><code>webstir build [--clean]</code></li>
+<li class=""><code>webstir watch</code> (default when no command is provided)</li>
+<li class=""><code>webstir test</code></li>
+<li class=""><code>webstir publish</code></li>
+<li class="">Generators: <code>webstir add-page &lt;name&gt;</code>, <code>webstir add-route &lt;name&gt; [--method &lt;METHOD&gt;] [--path &lt;path&gt;] [--fastify]</code>, <code>webstir add-job &lt;name&gt; [--schedule &lt;expression&gt;]</code>, <code>webstir add-test &lt;name-or-path&gt;</code></li>
+</ul>
+</li>
+<li class="">Programmatic chaining: workflows may invoke others as steps (e.g., <code>watch</code> → <code>build</code> → <code>test</code> → start services).</li>
+<li class="">CI usage: run discrete workflows with standard exit codes to gate builds.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="responsibilities">Responsibilities<a href="#responsibilities" class="hash-link" aria-label="Direct link to Responsibilities" title="Direct link to Responsibilities" translate="no">​</a></h2>
+<ul>
+<li class="">Validate inputs and workspace invariants; fail fast with clear errors.</li>
+<li class="">Decide order of operations and which workers/services to involve.</li>
+<li class="">Surface concise, actionable logs and return appropriate exit codes.</li>
+<li class="">Never hand-roll path strings; use workspace helpers and constants.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="lifecycle-by-workflow">Lifecycle (By Workflow)<a href="#lifecycle-by-workflow" class="hash-link" aria-label="Direct link to Lifecycle (By Workflow)" title="Direct link to Lifecycle (By Workflow)" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="init">init<a href="#init" class="hash-link" aria-label="Direct link to init" title="Direct link to init" translate="no">​</a></h3>
+<ul>
+<li class="">Create a project from embedded templates (frontend, backend, shared, types).</li>
+<li class="">Normalize names/paths; write a ready-to-run structure.</li>
+<li class="">Output: scaffolded source tree under <code>src/**</code> plus <code>types/</code>.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="build">build<a href="#build" class="hash-link" aria-label="Direct link to build" title="Direct link to build" translate="no">​</a></h3>
+<ul>
+<li class="">Compile TypeScript with <code>tsc --build</code>, then bundle JavaScript with <strong>esbuild</strong> for fast development builds.</li>
+<li class="">Process CSS imports and merge page HTML into <code>build/</code>.</li>
+<li class="">Copy Images, Fonts, and Media to <code>build/frontend/{images|fonts|media}/**</code>.</li>
+<li class="">Perform incremental work when possible; keep output readable with source maps in dev.</li>
+<li class="">Output: <code>build/frontend/**</code>, <code>build/backend/**</code>.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="watch">watch<a href="#watch" class="hash-link" aria-label="Direct link to watch" title="Direct link to watch" translate="no">​</a></h3>
+<ul>
+<li class="">Run an initial <code>build</code> and <code>test</code>.</li>
+<li class="">Start the dev web server and Node API server; begin watching <code>src/**</code>.</li>
+<li class="">On frontend change: rebuild affected assets and notify browsers via SSE reload.</li>
+<li class="">On backend change: rebuild backend code and restart the Node process.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="test">test<a href="#test" class="hash-link" aria-label="Direct link to test" title="Direct link to test" translate="no">​</a></h3>
+<ul>
+<li class="">Build (if needed) and execute compiled tests in Node.</li>
+<li class="">Resolve the testing provider from <code>webstir.providers.json</code> or <code>WEBSTIR_TESTING_PROVIDER</code>, installing overrides when required.</li>
+<li class="">Produce a pass/fail summary with CI-friendly exit codes.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="publish">publish<a href="#publish" class="hash-link" aria-label="Direct link to publish" title="Direct link to publish" translate="no">​</a></h3>
+<ul>
+<li class="">Produce optimized, fingerprinted assets in <code>dist/</code> per page.</li>
+<li class="">Use <strong>esbuild</strong> to bundle, tree-shake, minify JavaScript, and perform <strong>automatic code-splitting</strong> with production optimizations.</li>
+<li class="">esbuild extracts shared dependencies into <code>chunks/</code> folder; manages content hashing for entries (<code>index-&lt;hash&gt;.js</code>) and chunks (<code>chunks/*-&lt;hash&gt;.js</code>).</li>
+<li class="">Minify HTML/CSS, remove comments and source maps, and rewrite HTML links using per-page manifests.</li>
+<li class="">Optimize Images and Fonts when tools available, then copy to <code>dist/frontend/{images|fonts|media}/**</code>.</li>
+<li class="">Output: <code>dist/frontend/pages/&lt;page&gt;/index.html</code>, <code>index-&lt;hash&gt;.js</code>, <code>index.&lt;hash&gt;.css</code>, <code>manifest.json</code>, plus <code>dist/frontend/chunks/*-&lt;hash&gt;.js</code>.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="generators">generators<a href="#generators" class="hash-link" aria-label="Direct link to generators" title="Direct link to generators" translate="no">​</a></h3>
+<ul>
+<li class=""><code>add-page &lt;name&gt;</code>: scaffold <code>index.html|css|ts</code> under <code>src/frontend/pages/&lt;name&gt;/</code>.</li>
+<li class=""><code>add-route &lt;name&gt; [--method &lt;METHOD&gt;] [--path &lt;path&gt;] [--fastify]</code>: add a route to <code>webstir.module.routes</code> and optionally scaffold/register a Fastify handler.</li>
+<li class=""><code>add-job &lt;name&gt; [--schedule &lt;expression&gt;]</code>: create <code>src/backend/jobs/&lt;name&gt;/index.ts</code> and add a jobs manifest entry.</li>
+<li class=""><code>add-test &lt;name-or-path&gt;</code>: scaffold a <code>.test.ts</code> in the nearest <code>tests/</code>.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="contracts--guarantees">Contracts &amp; Guarantees<a href="#contracts--guarantees" class="hash-link" aria-label="Direct link to Contracts &amp; Guarantees" title="Direct link to Contracts &amp; Guarantees" translate="no">​</a></h2>
+<ul>
+<li class="">Source roots: <code>src/frontend/**</code>, <code>src/backend/**</code>, <code>src/shared/**</code>, <code>types/**</code>.</li>
+<li class="">Dev outputs: <code>build/frontend/**</code>, <code>build/backend/**</code> (including <code>build/frontend/{images|fonts|media}/**</code>).</li>
+<li class="">Prod outputs: <code>dist/frontend/pages/&lt;page&gt;/**</code> with per-page manifests, <code>dist/frontend/chunks/**</code> for shared code, plus static assets under <code>dist/frontend/{images|fonts|media}/**</code>.</li>
+<li class="">Dev server proxies <code>/api/*</code> to the Node process during <code>watch</code>.</li>
+<li class="">Base HTML requires <code>&lt;main&gt;</code> in <code>src/frontend/app/app.html</code>.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="errors--exit-codes">Errors &amp; Exit Codes<a href="#errors--exit-codes" class="hash-link" aria-label="Direct link to Errors &amp; Exit Codes" title="Direct link to Errors &amp; Exit Codes" translate="no">​</a></h2>
+<ul>
+<li class="">Validation failures (missing base HTML, bad flags, TS errors, failing tests) return non-zero exit codes.</li>
+<li class="">Logs name the failing stage and file when possible.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="adding-a-new-workflow">Adding a New Workflow<a href="#adding-a-new-workflow" class="hash-link" aria-label="Direct link to Adding a New Workflow" title="Direct link to Adding a New Workflow" translate="no">​</a></h2>
+<ul>
+<li class="">Keep it thin: coordinate, don’t implement pipelines in the workflow.</li>
+<li class="">Use <code>AppWorkspace</code> and constants; avoid manual path strings.</li>
+<li class="">Compose existing workers/services; prefer small, testable steps.</li>
+<li class="">Define clear inputs, outputs, and exit behavior; add E2E tests that lock down the contract.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="related-docs">Related Docs<a href="#related-docs" class="hash-link" aria-label="Direct link to Related Docs" title="Direct link to Related Docs" translate="no">​</a></h2>
+<ul>
+<li class="">Solution overview — <a class="" href="/docs/explanations/solution">solution</a></li>
+<li class="">Engine internals — <a class="" href="/docs/explanations/engine">engine</a></li>
+<li class="">Services — <a class="" href="/docs/explanations/services">services</a></li>
+<li class="">Servers — <a class="" href="/docs/explanations/servers">servers</a></li>
+<li class="">Workspace &amp; paths — <a class="" href="/docs/explanations/workspace">workspace</a></li>
+<li class="">Testing — <a class="" href="/docs/explanations/testing">tests</a> and the <a href="https://github.com/webstir-io/webstir-dotnet/blob/main/.codex/testing.md" target="_blank" rel="noopener noreferrer" class="">orchestrator testing guide</a></li>
+</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href="https://github.com/webstir-io/webstir-portal/edit/main/docs/reference/workflows.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"><span class="theme-last-updated">Last updated<!-- --> on <b><time datetime="2025-11-29T22:16:04.000Z" itemprop="dateModified">Nov 29, 2025</time></b></span></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs/reference/templates"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Templates</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#what-they-are" class="table-of-contents__link toc-highlight">What They Are</a></li><li><a href="#workflow-docs" class="table-of-contents__link toc-highlight">Workflow Docs</a></li><li><a href="#how-they-fit-in" class="table-of-contents__link toc-highlight">How They Fit In</a><ul><li><a href="#workers--di" class="table-of-contents__link toc-highlight">Workers &amp; DI</a></li></ul></li><li><a href="#initiation" class="table-of-contents__link toc-highlight">Initiation</a></li><li><a href="#responsibilities" class="table-of-contents__link toc-highlight">Responsibilities</a></li><li><a href="#lifecycle-by-workflow" class="table-of-contents__link toc-highlight">Lifecycle (By Workflow)</a><ul><li><a href="#init" class="table-of-contents__link toc-highlight">init</a></li><li><a href="#build" class="table-of-contents__link toc-highlight">build</a></li><li><a href="#watch" class="table-of-contents__link toc-highlight">watch</a></li><li><a href="#test" class="table-of-contents__link toc-highlight">test</a></li><li><a href="#publish" class="table-of-contents__link toc-highlight">publish</a></li><li><a href="#generators" class="table-of-contents__link toc-highlight">generators</a></li></ul></li><li><a href="#contracts--guarantees" class="table-of-contents__link toc-highlight">Contracts &amp; Guarantees</a></li><li><a href="#errors--exit-codes" class="table-of-contents__link toc-highlight">Errors &amp; Exit Codes</a></li><li><a href="#adding-a-new-workflow" class="table-of-contents__link toc-highlight">Adding a New Workflow</a></li><li><a href="#related-docs" class="table-of-contents__link toc-highlight">Related Docs</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Docs</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/docs/tutorials/getting-started">Getting Started</a></li><li class="footer__item"><a class="footer__link-item" href="/docs/reference/workflows">CLI Workflows</a></li><li class="footer__item"><a class="footer__link-item" href="/docs/how-to">How-to Guides</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/webstir-io/.github/blob/main/CODE_OF_CONDUCT.md" target="_blank" rel="noopener noreferrer" class="footer__link-item">Code of Conduct<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/webstir-io/.github/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer" class="footer__link-item">Contributing<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/webstir-io/.github/blob/main/SUPPORT.md" target="_blank" rel="noopener noreferrer" class="footer__link-item">Support<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/webstir-io" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">© 2025 Webstir.</div></div></div></footer></div>
+</body>
+</html>
