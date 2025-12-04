@@ -757,3 +757,7 @@
   margin: 0;
   /* Reset margin since it's in a flex container now */
 }
+
+[data-theme='dark'] .home-no-nav-links .main-wrapper {
+  background: var(--ifm-background-color);
+}
