@@ -101,6 +101,42 @@ const sections = [
   },
 ];
 
+function HeroActions(): JSX.Element {
+  const {colorMode, setColorMode} = useColorMode();
+
+  return (
+    <div className="heroActions">
+      <a
+        className="heroActionLink"
+        href="https://github.com/webstir-io"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        GitHub
+        <svg
+          className="heroActionIcon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+          <polyline points="15 3 21 3 21 9" />
+          <line x1="10" y1="14" x2="21" y2="3" />
+        </svg>
+      </a>
+      <ColorModeToggle
+        className="heroColorToggle"
+        value={colorMode}
+        onChange={() => setColorMode(colorMode === 'dark' ? 'light' : 'dark')}
+      />
+    </div>
+  );
+}
+
 export default function Home(): JSX.Element {
   const logoUrl = useBaseUrl('/img/webstir.svg');
 
@@ -125,40 +161,7 @@ export default function Home(): JSX.Element {
     >
       <header className={clsx('heroBanner')}>
         <BrowserOnly fallback={null}>
-          {() => {
-            const {colorMode, setColorMode} = useColorMode();
-            return (
-              <div className="heroActions">
-                <a
-                  className="heroActionLink"
-                  href="https://github.com/webstir-io"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  GitHub
-                  <svg
-                    className="heroActionIcon"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    aria-hidden="true"
-                  >
-                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                    <polyline points="15 3 21 3 21 9" />
-                    <line x1="10" y1="14" x2="21" y2="3" />
-                  </svg>
-                </a>
-                <ColorModeToggle
-                  className="heroColorToggle"
-                  value={colorMode}
-                  onChange={() => setColorMode(colorMode === 'dark' ? 'light' : 'dark')}
-                />
-              </div>
-            );
-          }}
+          {() => <HeroActions />}
         </BrowserOnly>
         <div className="container">
           <div className="heroLogo">
