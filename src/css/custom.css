@@ -242,6 +242,24 @@
   border-right: 1px solid var(--ifm-border-color);
 }
 
+.navbar-sidebar {
+  background: #0b0f1a;
+}
+
+.navbar-sidebar__back,
+.navbar-sidebar .navbar__brand,
+.navbar-sidebar .menu__link,
+.navbar-sidebar .menu__link--active,
+.navbar-sidebar .menu__link:hover {
+  color: #e5eaf2;
+}
+
+.navbar-sidebar .menu__link--active,
+.navbar-sidebar .menu__link:hover {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
 .theme-doc-sidebar-menu .menu__link {
   border-radius: 6px 0 0 6px;
 }
