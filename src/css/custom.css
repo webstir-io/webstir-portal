@@ -186,6 +186,7 @@
 
 .home-no-nav-links .main-wrapper {
   padding-top: 0;
+  background: var(--ifm-background-color);
 }
 
 .home-no-nav-links .navbar__items--left .navbar__item {
@@ -607,6 +608,10 @@
 .section {
   padding: 2.5rem 0 1.5rem;
   background: var(--ifm-background-color);
+}
+
+.section:last-of-type {
+  padding-bottom: 3.5rem;
 }
 
 .section h2 {
