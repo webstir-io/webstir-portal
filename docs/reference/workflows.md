@@ -82,7 +82,7 @@ See also: Engine internals — [engine](../explanations/engine.md)
 
 ### generators
 - `add-page <name>`: scaffold `index.html|css|ts` under `src/frontend/pages/<name>/`.
-- `add-route <name> [--method <METHOD>] [--path <path>] [--fastify]`: add a route to `webstir.module.routes` and optionally scaffold/register a Fastify handler.
+- `add-route <name> [--method <METHOD>] [--path <path>] [--fastify]`: add a backend API route to `webstir.module.routes` and optionally scaffold/register a Fastify handler (SSG/page metadata belongs in `webstir.module.views`).
 - `add-job <name> [--schedule <expression>]`: create `src/backend/jobs/<name>/index.ts` and add a jobs manifest entry.
 - `add-test <name-or-path>`: scaffold a `.test.ts` in the nearest `tests/`.
 

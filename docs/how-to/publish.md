@@ -10,7 +10,10 @@ Produce optimized, fingerprinted assets in `dist/` and rewrite HTML to reference
 - Before deploying or validating with the Docker sandbox.
 
 ## CLI
-- `webstir publish [--runtime <frontend|backend|all>]`
+- `webstir publish [--runtime <frontend|backend|all>] [--frontend-mode <bundle|ssg>]`
+
+SSG preview
+- `webstir publish --frontend-mode ssg` (or `webstir publish --runtime frontend --frontend-mode ssg`)
 
 ## Steps
 1. Run frontend and backend pipelines in production mode.
@@ -40,6 +43,7 @@ Produce optimized, fingerprinted assets in `dist/` and rewrite HTML to reference
 Examples:
 - `webstir publish --runtime backend` — push a new backend bundle without rebuilding pages.
 - `webstir publish --runtime frontend` — ship UI fixes when server code is unchanged.
+- `webstir publish --frontend-mode ssg` — generate static frontend outputs (SSG preview) alongside backend publish.
 
 ## Errors & Exit Codes
 - Non-zero on pipeline failures or missing inputs.

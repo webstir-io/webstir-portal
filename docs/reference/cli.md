@@ -153,6 +153,7 @@ Usage: `webstir add-route <name> [--method <METHOD>] [--path <path>] [--fastify]
 
 What it does:
 - Adds a backend route entry to `webstir.module.routes` in `package.json`.
+- Route entries describe backend APIs; static pages/SSG routing is driven by `webstir.module.views`.
 - Defaults to `GET /api/<name>` when flags are omitted.
 - Populates manifest metadata (`summary`, `description`, `tags`) plus request/response schema references supplied via CLI flags. Schema references follow the `kind:name@source` format described in the [`@webstir-io/module-contract` schema guidance](https://github.com/webstir-io/module-contract#schema-references) (`kind` defaults to `zod`, `@source` optional).
 - With `--fastify`, also scaffolds `src/backend/server/routes/<name>.ts` and attempts to import/register it in `src/backend/server/fastify.ts` when present.
