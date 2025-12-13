@@ -9,7 +9,7 @@ This guide shows how to add a backend route to your module manifest and optional
 ## Steps
 1. Add a route with defaults:
    - `webstir add-route users`
-   - Writes `GET /api/users` to `webstir.module.routes` in `package.json`.
+   - Writes `GET /api/users` to `webstir.moduleManifest.routes` in `package.json`.
 2. Specify method and path explicitly when needed:
    - `webstir add-route users --method POST --path /api/users`
 3. Attach metadata so documentation and tooling stay in sync:

@@ -17,12 +17,13 @@ Build and deploy a static version of your frontend using the Webstir frontend pr
 From the workspace root:
 
 ```bash
-webstir publish --frontend-mode ssg
+webstir publish
 ```
 
 What happens:
 - `publish` runs the standard frontend/backend pipelines in production mode.
-- The frontend provider creates optimized assets in `dist/frontend/**` and, with `--frontend-mode ssg`, adds static-friendly aliases:
+- In `webstir.mode: "ssg"` workspaces, the frontend defaults to SSG publish; use `--frontend-mode bundle` to override, or `--frontend-mode ssg` to opt in from other modes.
+- The frontend provider creates optimized assets in `dist/frontend/**` and, in SSG publish mode, adds static-friendly aliases:
   - `dist/frontend/pages/<page>/index.html` (page HTML)
   - `dist/frontend/<page>/index.html` (pretty URL alias)
   - `dist/frontend/index.html` when `pages/home/index.html` exists.
@@ -43,33 +44,47 @@ If you are using the Markdown content pipeline, the frontend provider needs to k
   }
   ```
 
-With this override, Markdown under `<workspaceRoot>/docs/**` is converted into `/docs/...` routes during `webstir publish --frontend-mode ssg`.
+With this override, Markdown under `<workspaceRoot>/docs/**` is converted into `/docs/...` routes during SSG publish.
 
 ## Static Paths from Module Metadata
 
-You can describe SSG views and their static paths in `package.json` under `webstir.module.views`. When present, `webstir publish --frontend-mode ssg` uses these hints to create additional `index.html` aliases. The `webstir-frontend add-page` command can also scaffold these entries for you.
+You can describe SSG views in `package.json` under `webstir.moduleManifest.views`. SSG publish uses these hints to create additional `index.html` aliases and (when a backend view loader exists) generate per-page `view-data.json`.
 
-Note: SSG routing is driven by `webstir.module.views` (pages). Route entries under `webstir.module.routes` are for backend APIs; if you add `renderMode`, `staticPaths`, or `ssg` metadata to routes, the frontend SSG publish step will fail and ask you to move that metadata to a view.
+Note: SSG routing is driven by `webstir.moduleManifest.views` (pages). Route entries under `webstir.moduleManifest.routes` are for backend APIs; if you add `renderMode`, `staticPaths`, or `ssg` metadata to routes, the frontend SSG publish step will fail and ask you to move that metadata to a view.
 
 Example:
 
 ```jsonc
 {
   "webstir": {
-    "module": {
+    "moduleManifest": {
       "views": [
         {
           "name": "HomeView",
           "path": "/",
-          "renderMode": "ssg",
           "staticPaths": ["/"]
         },
         {
           "name": "AboutView",
           "path": "/about",
-          "renderMode": "ssg",
           "staticPaths": ["/about", "/about/team"]
         }
+      ]
+    }
+  }
+}
+```
+
+Clean default (simple pages):
+
+```jsonc
+{
+  "webstir": {
+    "mode": "ssg",
+    "moduleManifest": {
+      "views": [
+        { "name": "HomeView", "path": "/" },
+        { "name": "AboutView", "path": "/about" }
       ]
     }
   }
@@ -81,15 +96,20 @@ Behavior today:
 - The first path segment is mapped to a page folder (for example, `/about` and `/about/team` map to `src/frontend/pages/about`).
 - Root (`"/"`) maps to the `home` page when present.
 
+In `webstir.mode: "ssg"` workspaces, views default to `renderMode: "ssg"` when omitted; set `renderMode` explicitly when you want to override (for example, `spa`).
+
+For simple (non-parameterized) views, `staticPaths` is optional. When omitted in an `ssg` workspace, it defaults to `[path]`. Use `staticPaths` when you want extra aliases (like `/about/team`) or when a view has params (like `/blog/:slug`).
+
 To scaffold a page and its SSG metadata in one step:
 
 ```bash
-npx webstir-frontend add-page about --workspace "$PWD" --mode ssg
+npx webstir-frontend add-page about --workspace "$PWD"
 ```
 
 This:
 - Creates `src/frontend/pages/about/index.html|css|ts`.
-- Ensures `webstir.module.views` in `package.json` has an entry with `path: "/about"`, `renderMode: "ssg"`, and `staticPaths: ["/about"]`.
+- In `webstir.mode: "ssg"` workspaces, no manifest entry is needed (paths are inferred from `src/frontend/pages/**`).
+- Outside `ssg` mode, it ensures `webstir.moduleManifest.views` has an entry with `path: "/about"`, `renderMode: "ssg"`, and `staticPaths: ["/about"]`.
 
 ## GitHub Pages
 

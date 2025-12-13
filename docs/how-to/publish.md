@@ -12,8 +12,13 @@ Produce optimized, fingerprinted assets in `dist/` and rewrite HTML to reference
 ## CLI
 - `webstir publish [--runtime <frontend|backend|all>] [--frontend-mode <bundle|ssg>]`
 
+Frontend mode defaults:
+- If `webstir.mode` is `ssg`, `--frontend-mode` defaults to `ssg`.
+- Otherwise, the default is `bundle` and you can opt into SSG with `--frontend-mode ssg`.
+
 SSG preview
-- `webstir publish --frontend-mode ssg` (or `webstir publish --runtime frontend --frontend-mode ssg`)
+- `webstir publish` in an `ssg` workspace (or `webstir publish --runtime frontend`)
+- `webstir publish --frontend-mode ssg` to opt in from other modes
 
 ## Steps
 1. Run frontend and backend pipelines in production mode.
@@ -43,7 +48,7 @@ SSG preview
 Examples:
 - `webstir publish --runtime backend` — push a new backend bundle without rebuilding pages.
 - `webstir publish --runtime frontend` — ship UI fixes when server code is unchanged.
-- `webstir publish --frontend-mode ssg` — generate static frontend outputs (SSG preview) alongside backend publish.
+- `webstir publish --frontend-mode ssg` — generate static frontend outputs (SSG preview) alongside backend publish (not required in `ssg` workspaces).
 
 ## Errors & Exit Codes
 - Non-zero on pipeline failures or missing inputs.

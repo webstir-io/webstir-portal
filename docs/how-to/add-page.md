@@ -15,13 +15,14 @@ Scaffold a new frontend page with `index.html|css|ts` under `src/frontend/pages/
 ## Notes
 - Frontend only: this command scaffolds files under `src/frontend/pages/` and does not touch backend or shared code.
 - Internals: the CLI shells into the `@webstir-io/webstir-frontend` TypeScript package (`webstir-frontend add-page`) so scaffolding stays in sync with the framework templates.
+- SSG default: when `webstir.mode` is `ssg`, scaffolds a JS-free page by default (no `index.ts` and no module script tag); add `index.ts` later if you want JS sprinkles.
 
 ## Inputs
 - `<name>`: normalized and validated page name. If the page already exists, the workflow fails.
 
 ## Steps
 1. Validate `<name>` and resolve `src/frontend/pages/<name>/`.
-2. Delegate to `webstir-frontend add-page` to create `index.html`, `index.css`, and `index.ts` from the framework templates.
+2. Delegate to `webstir-frontend add-page` to create page files from the framework templates.
 3. The TypeScript CLI updates intrinsics (imports, references) so the page builds immediately.
 
 ## Outputs

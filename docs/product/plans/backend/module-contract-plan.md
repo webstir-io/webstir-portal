@@ -44,7 +44,7 @@ Routes & Views
 - ts-rest integration: provide an optional adapter `fromTsRest(route)` and (later) typed client generation; `ts-rest` remains an optional peer for providers, not a hard dep of the contract.
 
 Discovery & Helpers
-- Discovery: `package.json` top-level `"webstir.module"` object with `{ kind, entry }`. Orchestrator discovers by this field and validates against JSON Schema.
+- Discovery: `package.json` top-level `"webstir.moduleManifest"` object with `{ kind, entry }`. Orchestrator discovers by this field and validates against JSON Schema.
 - Helpers: `createModule({ manifest, routes, views, ... })`, `defineRoute({...})`, `defineView({...})` with strong generics and Zod-powered inference.
 
 Types, Examples & Tests

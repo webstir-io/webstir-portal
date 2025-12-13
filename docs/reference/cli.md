@@ -136,7 +136,7 @@ Notes:
 Usage: `webstir add-page <name>`
 
 What it does:
-- Scaffolds `index.html`, `index.css`, and `index.ts` in `src/frontend/pages/<name>/`.
+- Scaffolds a new page under `src/frontend/pages/<name>/` (defaults to JS-free output when `webstir.mode=ssg`).
 - Ready to build and serve without extra configuration.
 - Delegates to the `@webstir-io/webstir-frontend` CLI so the scaffold matches the current framework templates.
 
@@ -152,8 +152,8 @@ What it does:
 Usage: `webstir add-route <name> [--method <METHOD>] [--path <path>] [--fastify] [--project-name <project>]`
 
 What it does:
-- Adds a backend route entry to `webstir.module.routes` in `package.json`.
-- Route entries describe backend APIs; static pages/SSG routing is driven by `webstir.module.views`.
+- Adds a backend route entry to `webstir.moduleManifest.routes` in `package.json`.
+- Route entries describe backend APIs; static pages/SSG routing is driven by `webstir.moduleManifest.views`.
 - Defaults to `GET /api/<name>` when flags are omitted.
 - Populates manifest metadata (`summary`, `description`, `tags`) plus request/response schema references supplied via CLI flags. Schema references follow the `kind:name@source` format described in the [`@webstir-io/module-contract` schema guidance](https://github.com/webstir-io/module-contract#schema-references) (`kind` defaults to `zod`, `@source` optional).
 - With `--fastify`, also scaffolds `src/backend/server/routes/<name>.ts` and attempts to import/register it in `src/backend/server/fastify.ts` when present.
@@ -180,7 +180,7 @@ Schema flags (`--*-schema`) expect the `kind:name@source` string noted above. Om
 Usage: `webstir add-job <name> [--schedule <expression>] [--project-name <project>]`
 
 What it does:
-- Creates `src/backend/jobs/<name>/index.ts` and adds an entry to `webstir.module.jobs` in `package.json`.
+- Creates `src/backend/jobs/<name>/index.ts` and adds an entry to `webstir.moduleManifest.jobs` in `package.json`.
 - The job stub exports a `run()` function and is directly executable during development.
 - Accepts optional metadata so manifest entries stay self-documenting (`description`, `priority`). Priority accepts either integers or arbitrary strings; numeric values are stored as numbers.
 
