@@ -33,7 +33,7 @@ Common patterns:
 ## Commands
 
 ### init
-Usage: `webstir init [--client-only|--server-only] [--project-name|-p <name>] [directory]`
+Usage: `webstir init [--client-only|--server-only] [--project|-p <name>] [directory]`
 
 What it does:
 - Creates a new project from embedded templates (frontend, backend, shared, and types).
@@ -122,14 +122,14 @@ What it does:
 - Honors `--runtime <frontend|backend|all>` (or `-r`) so you can publish just the backend artifacts when frontend assets are unchanged.
 
 ### backend-inspect
-Usage: `webstir backend-inspect [project] [--project-name <name>]`
+Usage: `webstir backend-inspect [project] [--project <name>]`
 
 What it does:
 - Runs the backend worker (server-only) to refresh `.webstir/backend-manifest.json`.
 - Prints module metadata (contract version, capabilities, routes, jobs) so you can confirm manifest hydration without starting `watch`.
 
 Notes:
-- Accepts the positional `[project]` or `--project-name` flag when multiple projects exist in the current directory.
+- Accepts the positional `[project]` or `--project` flag when multiple projects exist in the current directory.
 - Skips frontend work entirely; run `webstir build --runtime backend` first if you only want to inspect the last build output without rebuilding.
 
 ### add-page
@@ -149,7 +149,7 @@ What it does:
 - Uses the `@webstir-io/webstir-testing` CLI to write the template and keep dependencies pinned.
 
 ### add-route
-Usage: `webstir add-route <name> [--method <METHOD>] [--path <path>] [--fastify] [--project-name <project>]`
+Usage: `webstir add-route <name> [--method <METHOD>] [--path <path>] [--fastify] [--project <project>]`
 
 What it does:
 - Adds a backend route entry to `webstir.moduleManifest.routes` in `package.json`.
@@ -161,7 +161,7 @@ What it does:
 Options:
 - `--method` HTTP method (e.g., GET, POST). Default: GET
 - `--path` Route path (e.g., /api/users). Default: `/api/<name>`
-- `--project-name <project>` Target a specific workspace project when multiple exist.
+- `--project <project>` Target a specific workspace project when multiple exist.
 - `--fastify` Also scaffold a Fastify handler and register it if possible
 - `--summary <text>` Adds a short human-readable summary to the manifest entry.
 - `--description <text>` Adds a longer description to the manifest entry.
@@ -177,7 +177,7 @@ Options:
 Schema flags (`--*-schema`) expect the `kind:name@source` string noted above. Omit `kind:` for Zod schemas and skip `@source` when the schema lives beside the generator output. Invalid `kind` values or missing `name` segments cause CLI validation errors before any files are written.
 
 ### add-job
-Usage: `webstir add-job <name> [--schedule <expression>] [--project-name <project>]`
+Usage: `webstir add-job <name> [--schedule <expression>] [--project <project>]`
 
 What it does:
 - Creates `src/backend/jobs/<name>/index.ts` and adds an entry to `webstir.moduleManifest.jobs` in `package.json`.
@@ -186,7 +186,7 @@ What it does:
 
 Options:
 - `--schedule` Optional schedule string (free-form, often cron-like, e.g., `0 0 * * *`). Stored as-is in the manifest.
-- `--project-name <project>` Target a specific workspace project when multiple exist.
+- `--project <project>` Target a specific workspace project when multiple exist.
 - `--description <text>` Adds a longer explanation for the job alongside the manifest entry.
 - `--priority <number|string>` Stores a numeric priority when parsable or falls back to the provided string unchanged.
 - After scaffolding, run `node build/backend/jobs/scheduler.js --list|--job <name>|--watch` (or the TypeScript equivalent via `tsx`) to inspect and execute jobs locally. The embedded watcher supports `@hourly`, `@daily`, `@weekly`, `@reboot`, and `rate(n units)` expressions; other cron strings are recorded for your production scheduler.

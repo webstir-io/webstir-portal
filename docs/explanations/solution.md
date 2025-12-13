@@ -63,7 +63,7 @@ Hub for the CLI and host tooling. This doc explains what the solution is, how it
    - Prod: `dist/frontend/pages/<page>/index.<timestamp>.{css|js}`, HTML with rewritten links, per-page `manifest.json`.
 
 ## CLI Summary
- - `init [--client-only|--server-only] [--project-name|-p <name>] [directory]`
+ - `init [--client-only|--server-only] [--project|-p <name>] [directory]`
 - `build [--clean]`
 - `watch` (alias: no command)
 - `test`

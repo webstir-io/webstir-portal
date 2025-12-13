@@ -10,15 +10,15 @@
 - Refactoring worker orchestration or project discovery.
 
 ## CLI Surface
-- `webstir add-route <name> [--method <METHOD>] [--path <path>] [--fastify] [--project-name <project>]`
+- `webstir add-route <name> [--method <METHOD>] [--path <path>] [--fastify] [--project <project>]`
   - Defined in `webstir-dotnet/CLI/Help.cs:161`; wired via DI in `webstir-dotnet/CLI/Program.cs:62`.
   - `--method` defaults to `GET` and must be one of `GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS` (`webstir-dotnet/Engine/Workflows/AddRouteWorkflow.cs:17`).
   - `--path` defaults to `/api/<name>` and gets a leading `/` when omitted (`webstir-dotnet/Engine/Workflows/AddRouteWorkflow.cs:45`).
   - `--fastify` scaffolds a handler file and patches `server/fastify.ts` if present (`webstir-dotnet/Engine/Workflows/AddRouteWorkflow.cs:52`).
-- `webstir add-job <name> [--schedule <expression>] [--project-name <project>]`
+- `webstir add-job <name> [--schedule <expression>] [--project <project>]`
   - Defined in `webstir-dotnet/CLI/Help.cs:177`; workflow lives in `webstir-dotnet/Engine/Workflows/AddJobWorkflow.cs:18`.
   - `--schedule` stores an arbitrary cron-like string in the manifest (`webstir-dotnet/Engine/Workflows/AddJobWorkflow.cs:71`).
-- Multi-project detection is centralized in `webstir-dotnet/Engine/Workflows/BaseWorkflow.cs:43` so both commands honor `--project-name`.
+- Multi-project detection is centralized in `webstir-dotnet/Engine/Workflows/BaseWorkflow.cs:43` so both commands honor `--project`.
 
 ## Manifest Mutations
 - Target: `<workspace>/<project>/package.json` (`webstir-dotnet/Engine/Workflows/AddRouteWorkflow.cs:87`, `webstir-dotnet/Engine/Workflows/AddJobWorkflow.cs:63`).

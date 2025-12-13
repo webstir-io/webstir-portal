@@ -11,12 +11,12 @@ Create a new project from embedded templates. Produces a ready-to-run layout wit
 - Recreating a minimal workspace for tests or examples.
 
 ## CLI
-- `webstir init [--client-only|--server-only] [--project-name|-p <name>] [directory]`
+- `webstir init [--client-only|--server-only] [--project|-p <name>] [directory]`
 
 ## Inputs & Flags
 - Target directory (optional; defaults to current working directory).
 - `--client-only` or `--server-only` to limit templates.
-- `--project-name|-p` to set the app name in template files.
+- `--project|-p` to set the app name in template files.
 
 ## Steps
 1. Validate or create the target directory.
