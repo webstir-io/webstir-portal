@@ -17,12 +17,13 @@ webstir help [command]
 
 Common patterns:
 - `webstir init my-app`
-- `webstir init --client-only my-client`
+- `webstir init ssg docs`
 - `webstir build --clean`
 - `webstir watch`
 - `webstir test`
 - `webstir install`
 - `webstir publish`
+- `webstir repair --dry-run`
 - `webstir add-page about`
 - `webstir add-test auth/login`
 - `webstir add-route users`
@@ -33,7 +34,7 @@ Common patterns:
 ## Commands
 
 ### init
-Usage: `webstir init [--client-only|--server-only] [--project|-p <name>] [directory]`
+Usage: `webstir init [--project|-p <name>] <mode> <directory> | <directory>`
 
 What it does:
 - Creates a new project from embedded templates (frontend, backend, shared, and types).
@@ -41,8 +42,18 @@ What it does:
 - Initializes a working dev setup that builds and runs with `webstir watch`.
 
 Notes:
-- Choose one of `--client-only` or `--server-only` to limit what is scaffolded.
-- Without options, generates a full-stack project.
+- Mode is one of `full` (default), `ssg`, `spa`, or `api`.
+
+### repair
+Usage: `webstir repair [--dry-run] [path]`
+
+What it does:
+- Restores missing scaffold files for the current workspace mode without overwriting existing files.
+- Uses the embedded mode templates plus any enabled feature scaffolds (for example `webstir.enable.spa` or `webstir.enable.seamlessNav`).
+
+Notes:
+- Use `--dry-run` to print the exact list of files that would be restored.
+- Use this when a command reports a missing scaffold directory (instead of silently regenerating files).
 
 ### build
 Usage: `webstir build [--clean]`
@@ -243,11 +254,12 @@ Outputs:
 
 ## Examples
 - Create a full-stack app: `webstir init my-app && cd my-app && webstir watch`
-- Frontend-only app: `webstir init --client-only my-client && cd my-client && webstir watch`
+- Static site (SSG): `webstir init ssg docs && cd docs && webstir watch`
 - Clean build: `webstir build --clean`
 - Add a page: `webstir add-page about && webstir watch`
 - Publish for production: `webstir publish`
 - Refresh framework packages: `webstir install --clean`
+- Repair missing scaffold files: `webstir repair --dry-run && webstir repair`
 - Run tests with Vitest: `WEBSTIR_TESTING_PROVIDER=@webstir-io/vitest-testing webstir test`
 - Verify backend manifest ingestion: `webstir smoke`
 
@@ -268,6 +280,7 @@ Commands:
   init          Initialize a new webstir project
   install       Synchronize framework package dependencies from the registry
   publish       Create production build
+  repair        Restore missing scaffold files for the current workspace mode
   smoke         Run the accounts example through the CLI and report backend manifest routes
   test          Run tests through the configured provider (defaults to @webstir-io/webstir-testing)
   watch         Build and watch for changes (default)
