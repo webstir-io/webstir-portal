@@ -66,9 +66,14 @@ This keeps "docs chrome" styles from leaking into app pages.
 ### Search UI styling
 The `search.js` helper can style its UI in one of two ways:
 - Default: injects an inline `<style>` tag (works even if your template doesn’t ship search CSS).
-- Preferred for SSG templates: styles live in CSS (`components.css`) and JS is behavior-only.
+- Preferred for SSG templates: styles live in CSS (`app/styles/features/search.css`) and JS is behavior-only.
 
-To opt into CSS-based styling, set:
+When you run `webstir enable search`, Webstir opts you into CSS-based styling by:
+- Adding `src/frontend/app/styles/features/search.css` to your app
+- Adding `@import "./styles/features/search.css";` to `src/frontend/app/app.css`
+- Setting `data-webstir-search-styles="css"` on the `<html>` element in `src/frontend/app/app.html`
+
+To opt in manually, set:
 ```html
 <html lang="en" data-webstir-search-styles="css">
 ```
