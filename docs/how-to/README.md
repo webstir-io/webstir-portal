@@ -12,6 +12,7 @@ Task-oriented docs for doing specific things.
 - [Extend Pipelines with Hooks](./pipeline-hooks.md)
 - [Precompression](./precompression.md)
 - [Sandbox](./sandbox.md)
+- [CSS Playbook](./css-playbook.md)
 - [Add Page](./add-page.md)
 - [Add Route](./add-route.md)
 - [Add Job](./add-job.md)

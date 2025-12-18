@@ -49,7 +49,7 @@ Usage: `webstir repair [--dry-run] [path]`
 
 What it does:
 - Restores missing scaffold files for the current workspace mode without overwriting existing files.
-- Uses the embedded mode templates plus any enabled feature scaffolds (for example `webstir.enable.spa` or `webstir.enable.seamlessNav`).
+- Uses the embedded mode templates plus any enabled feature scaffolds (for example `webstir.enable.spa` or `webstir.enable.clientNav`).
 
 Notes:
 - Use `--dry-run` to print the exact list of files that would be restored.

@@ -2,6 +2,8 @@
 
 Build and deploy a static version of your frontend using the Webstir frontend provider. This preview relies on `webstir-frontend` directly and is intended for marketing/landing sites and simple apps.
 
+See also: [CSS Playbook](./css-playbook.md) for the minimal, convention-first styling approach used by the SSG starter.
+
 ## When To Use
 - You want a fast, cacheable site (e.g., company landing page) with no server-side rendering or dynamic HTML.
 - You are comfortable using the `webstir-frontend` CLI alongside `webstir` while SSG support is integrated into the main orchestrator.
