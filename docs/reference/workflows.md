@@ -13,6 +13,7 @@ See also: Engine internals — [engine](../explanations/engine.md)
 ## Workflow Docs
 - Init — [init](../how-to/init.md)
 - Build — [build](../how-to/build.md)
+- Enable — [enable](../how-to/enable.md)
 - Watch — [watch](../how-to/watch.md)
 - Test — [test](../how-to/test.md)
 - Publish — [publish](../how-to/publish.md)
@@ -53,6 +54,13 @@ See also: Engine internals — [engine](../explanations/engine.md)
 - Create a project from embedded templates (frontend, backend, shared, types).
 - Normalize names/paths; write a ready-to-run structure.
 - Output: scaffolded source tree under `src/**` plus `types/`.
+
+### enable
+- Opt into optional features by copying embedded feature scaffolds into the workspace and updating `package.json` flags under `webstir.enable`.
+- Appends any required app imports so the feature is active on the next build/watch.
+- Behavior is additive and idempotent: re-running does not duplicate imports.
+
+See: [Enable Features](../how-to/enable.md)
 
 ### build
 - Compile TypeScript with `tsc --build`, then bundle JavaScript with **esbuild** for fast development builds.

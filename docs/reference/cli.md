@@ -19,6 +19,7 @@ Common patterns:
 - `webstir init my-app`
 - `webstir init ssg docs`
 - `webstir build --clean`
+- `webstir enable search`
 - `webstir watch`
 - `webstir test`
 - `webstir install`
@@ -134,6 +135,17 @@ What it does:
 
 ### backend-inspect
 Usage: `webstir backend-inspect [project] [--project <name>]`
+
+### enable
+Usage: `webstir enable <scripts <page>|spa|client-nav|search|backend>`
+
+What it does:
+- Opts into optional functionality by writing embedded feature scaffolds and updating `package.json` flags under `webstir.enable`.
+- Adds required app imports for feature scripts/styles so the behavior is active on the next build/watch.
+
+Notes:
+- Feature scripts are appended as `.js` imports in `src/frontend/app/app.ts` because the dev server serves `build/frontend/**`.
+- For details and per-feature outputs, see [Enable Features](../how-to/enable.md).
 
 What it does:
 - Runs the backend worker (server-only) to refresh `.webstir/backend-manifest.json`.

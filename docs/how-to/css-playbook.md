@@ -4,21 +4,50 @@ Conventions for writing CSS in Webstir templates and SSG sites. The goal is to k
 
 ## Principles
 - Tokens-first: use CSS custom properties instead of ad-hoc `#hex`/`px` values.
-- Tiny surface area: prefer a few primitives + a few components over "utility everything".
+- Tiny surface area: prefer a few layout building blocks + a few components over "utility everything".
 - Deterministic cascade: use cascade layers so "where do I put this?" is obvious.
 - Accessible defaults: focus rings, readable type, and sensible spacing are part of the system.
 
 ## The Contract (v0)
+This reflects the current SSG template CSS system.
 
-### Layout primitives (classes)
-Use a small fixed set of primitives:
-- `.ws-container` — centered max-width container
+### File layout + layers
+The SSG starter treats `src/frontend/app/app.css` as the single entrypoint:
+- It declares a stable `@layer` order (so overrides are deterministic).
+- It imports every stylesheet under `src/frontend/app/styles/**` (avoid nested imports inside those files).
+
+Default layer order:
+```css
+@layer reset, tokens, base, layout, components, features, utilities, overrides;
+```
+
+Core system files (SSG template today):
+- `src/frontend/app/styles/reset.css`
+- `src/frontend/app/styles/tokens.css`
+- `src/frontend/app/styles/base.css`
+- `src/frontend/app/styles/layout.css`
+- `src/frontend/app/styles/components/markdown.css`
+- `src/frontend/app/styles/components/header.css`
+- `src/frontend/app/styles/components/buttons.css`
+- `src/frontend/app/styles/utilities.css`
+
+Page-level CSS lives next to the page and uses `@layer overrides`:
+- `src/frontend/pages/home/index.css`
+- `src/frontend/pages/docs/index.css`
+
+Feature CSS is opt-in:
+- `src/frontend/app/styles/features/*.css` (added by enable commands)
+- `app.css` imports feature files under the `features` layer
+
+### Layout (classes)
+Use a small fixed set of layout building blocks:
+- `.ws-container` — centered max-width container (uses `--ws-container` and `--ws-container-pad`)
 - `.ws-stack` — vertical layout with gap
 - `.ws-cluster` — inline row with wrap + gap
 - `.ws-grid` — responsive grid
-- `.ws-sidebar` — content + sidebar layout
+- `.ws-sidebar` — content + sidebar layout (uses `--ws-sidebar` above `48rem`)
 
-Tune primitives with CSS variables instead of creating more classes:
+Tune layout building blocks with CSS variables instead of creating more classes:
 
 ```html
 <div class="ws-stack" style="--ws-gap: var(--ws-space-4)">
@@ -26,12 +55,18 @@ Tune primitives with CSS variables instead of creating more classes:
 </div>
 ```
 
-### Components (`data-ui`)
-Target components by `data-ui` and use a small set of variant attributes:
-- `data-ui="btn"` (and other component ids)
-- `data-variant="solid|ghost|outline|soft"`
-- `data-size="sm|md|lg"`
-- `data-tone="neutral|accent|danger|success|warning"`
+### Components (`data-ui` + class-based)
+SSG template components live in `@layer components`. Today that includes:
+- `data-ui="btn"` (preferred) and legacy `.button` / `.button--primary` aliases
+- `.ws-icon-button` (shared icon-only button chrome for menu + search triggers)
+- `.ws-drawer-backdrop` (shared drawer overlay; uses `--ws-drawer-top`)
+- `.app-header`, `.app-header__inner`, `.app-brand`, `.app-nav`, `.app-menu` (header + nav)
+- `main > article` sizing for Markdown pages (`components/markdown.css`)
+
+Button variants implemented today:
+- `data-variant="solid|ghost"`
+- `data-size="sm|lg"` (default is the un-set "md" size)
+- `data-tone="accent"` (used by solid buttons)
 
 Example:
 
@@ -46,8 +81,8 @@ Prefer `aria-*` and native attributes for state:
 Define and customize design values via CSS variables (custom properties).
 
 Common token categories:
-- Color: `--ws-bg`, `--ws-fg`, `--ws-muted`, `--ws-border`, `--ws-accent`
-- Space: `--ws-space-1..8`
+- Color: `--ws-bg`, `--ws-fg`, `--ws-muted`, `--ws-border`, `--ws-accent`, `--ws-accent-hover`, `--ws-focus`
+- Space: `--ws-space-1..8`, `--ws-gutter` (used by containers)
 - Radius: `--ws-radius-1..3`
 - Type: `--ws-font-sans`, `--ws-font-mono`
 
@@ -56,6 +91,7 @@ Layout sizing tokens (use tokens instead of hardcoded `px` in templates):
 - `--ws-shell-container` — wider “chrome” container (header + docs layout)
 - `--ws-article` — prose width target (typically `ch`-based)
 - `--ws-docs-sidebar`, `--ws-docs-toc` — docs shell column widths
+- `--ws-container-pad` — side padding for `.ws-container` (defaults to `--ws-gutter`)
 
 ### Scoping
 Docs-only rules must be scoped under a stable attribute:
@@ -63,8 +99,42 @@ Docs-only rules must be scoped under a stable attribute:
 
 This keeps "docs chrome" styles from leaking into app pages.
 
+Docs layout specifics (SSG template):
+- `.docs-layout` sets `--ws-container: var(--ws-shell-container)`
+- `.docs-layout__inner` defines the grid using `--ws-docs-sidebar` and `--ws-docs-toc`
+- Breakpoints: `53.75rem` collapses to one column; `68.75rem` hides the TOC
+- Styles live in `src/frontend/pages/docs/index.css` under `@layer overrides`
+
+## SSG Layout Patterns (Current Templates)
+
+### App shell (header + main)
+The shared header lives in `src/frontend/app/app.html` and `components/header.css`:
+
+```html
+<header class="app-header">
+  <div class="app-header__inner ws-container">...</div>
+</header>
+```
+
+`app-header__inner` widens the container to `--ws-shell-container`.
+
+### Marketing/landing hero (home page)
+The home page uses `.hero` + `.hero__inner` and is styled in `src/frontend/pages/home/index.css` under
+`@layer overrides`.
+
+### Docs layout (docs index + markdown)
+Docs pages use a dedicated layout in `src/frontend/pages/docs/index.html`:
+
+```html
+<section class="docs-layout" data-scope="docs">
+  <div class="ws-container docs-layout__inner">...</div>
+</section>
+```
+
+`docs-layout` widens the container and drives the sidebar + TOC grid.
+
 ### Search UI styling
-The `search.js` helper can style its UI in one of two ways:
+The search feature module can style its UI in one of two ways:
 - Default: injects an inline `<style>` tag (works even if your template doesn’t ship search CSS).
 - Preferred for SSG templates: styles live in CSS (`app/styles/features/search.css`) and JS is behavior-only.
 
@@ -87,7 +157,15 @@ Add or adjust a token, then use it everywhere. Don’t introduce raw values in p
 Add a `data-ui` id and style it once in the component layer, then reuse it. Update the registry (keep the list of allowed ids short).
 
 ### I need a one-off tweak for a single page
-Keep it in that page’s `index.css`. If it repeats, promote it into a primitive/component.
+Keep it in that page’s `index.css` under `@layer overrides`. If it repeats, promote it into a layout
+building block/component.
+
+## Current `data-ui` Registry (SSG Template)
+- `btn`
+
+Shared classes (SSG Template):
+- `ws-icon-button`
+- `ws-drawer-backdrop`
 
 ## Related
 - Static Sites (SSG Preview) — [static-sites](./static-sites.md)
