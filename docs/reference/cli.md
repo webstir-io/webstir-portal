@@ -120,8 +120,8 @@ Notes:
 - Safe to run repeatedly; skips work when packages are already in sync.
 - Use `--dry-run` to preview which packages would be installed or updated without running a package install (non-zero exit code means action is required).
 - Use `--clean` to remove the cached `.webstir/` workspace directory before reinstalling (cannot be combined with `--dry-run`).
-- Override the tool for a single run with `--package-manager pnpm@8` (or `-m pnpm@8`); omit `@version` to use the default Corepack-discovered binary.
-- Set `WEBSTIR_PACKAGE_MANAGER=pnpm@8 webstir install` to persist the override for the current process; leave unset to fall back on `package.json` metadata or lockfiles.
+- Override the tool for a single run with `--package-manager pnpm@10.5.2` (or `-m pnpm@10.5.2`); omit `@version` to use the default Corepack-discovered binary.
+- Set `WEBSTIR_PACKAGE_MANAGER=pnpm@10.5.2 webstir install` to persist the override for the current process; leave unset to fall back on `package.json` metadata or lockfiles.
 - Ensure `.npmrc` is configured with credentials (for GitHub Packages, export `GH_PACKAGES_TOKEN`) so registry installs succeed.
 
 ### publish

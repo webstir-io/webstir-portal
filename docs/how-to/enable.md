@@ -14,6 +14,8 @@ Supported features:
 - `spa` — opt into SPA routing
 - `client-nav` — enable client-side navigation (feature module)
 - `search` — enable site search UI + behavior (feature modules + CSS)
+- `content-nav` — enable docs content navigation (sidebar, breadcrumb, h2 TOC)
+ - `content-nav` — enable docs content navigation (sidebar + breadcrumb)
 - `backend` — add backend scaffold and switch to `webstir.mode=full`
 
 ## What `enable` Changes
@@ -45,6 +47,17 @@ Supported features:
   - `<html data-webstir-search-styles="css">`
 - Updates `package.json`:
   - `webstir.enable.search=true`
+
+### content-nav
+- Writes:
+  - `src/frontend/app/scripts/features/content-nav.ts`
+  - `src/frontend/app/styles/features/content-nav.css`
+- Appends imports:
+  - `src/frontend/app/app.ts`: `import "./scripts/features/content-nav.js";`
+  - `src/frontend/app/app.css`: `@import "./styles/features/content-nav.css";`
+- Updates `package.json`:
+  - `webstir.enable.contentNav=true`
+Applies to SSG docs pages (content pipeline) only.
 
 ### backend
 - Creates `src/backend/**` if missing (using the embedded full-stack backend scaffold).

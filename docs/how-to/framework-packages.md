@@ -36,7 +36,7 @@ This guide explains how maintainers rebuild the frontend, backend, and testing p
 - Run `webstir install` (or any workflow that calls it) inside a consuming workspace.
 - The installer rewrites the workspace `package.json` entries for the framework packages, removes stale caches when necessary, and runs the selected package manager so `node_modules` matches the recorded registry versions.
 - Use `webstir install --dry-run` to inspect upcoming changes, or `webstir install --clean` to clear the `.webstir/` cache before reinstalling.
-- Override the tool for a single run with `webstir install --package-manager pnpm@9` (or `-m pnpm@9`); omit the version to use the repo’s `packageManager` metadata.
+- Override the tool for a single run with `webstir install --package-manager pnpm@10.5.2` (or `-m pnpm@10.5.2`); omit the version to use the repo’s `packageManager` metadata.
 
 ## Registry Notes
 - Framework installs now rely on registry packages. Configure `.npmrc` with the appropriate registry URL and authentication token (currently `GH_PACKAGES_TOKEN` for GitHub Packages).

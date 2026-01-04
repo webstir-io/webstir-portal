@@ -21,6 +21,15 @@ Or add a `webstir.providers.json` file to the workspace root:
 
 > After editing `webstir.providers.json`, run `webstir install` to ensure the provider dependency is installed.
 
+Quickstart for unpublished builds:
+
+```bash
+WEBSTIR_FRONTEND_PROVIDER_SPEC=../webstir-frontend \
+webstir watch
+```
+
+Set `WEBSTIR_FRONTEND_PROVIDER` alongside the spec when you are testing a non-default frontend provider.
+
 ## Backend
 
 ```bash
@@ -28,6 +37,13 @@ WEBSTIR_BACKEND_PROVIDER=@webstir-io/webstir-backend webstir publish
 ```
 
 Backend swaps will pick up any provider published under the module contract.
+
+Quickstart for unpublished builds:
+
+```bash
+WEBSTIR_BACKEND_PROVIDER_SPEC=../webstir-backend \
+webstir build --runtime backend
+```
 
 ## Testing
 
@@ -49,12 +65,15 @@ Or add a `webstir.providers.json` entry:
 Quickstart for unpublished builds:
 
 ```bash
+WEBSTIR_TESTING_PROVIDER_SPEC=../webstir-testing \
+webstir test
+
 WEBSTIR_TESTING_PROVIDER=@webstir-io/vitest-testing \
 WEBSTIR_TESTING_PROVIDER_SPEC=../vitest-testing \
 webstir test
 ```
 
-The host installs providers from `WEBSTIR_TESTING_PROVIDER_SPEC` when set; leave it empty when consuming from the registry. Point the value at your local clone of the standalone repository when testing unpublished builds.
+The host installs providers from `WEBSTIR_TESTING_PROVIDER_SPEC` when set; leave it empty when consuming from the registry. When `WEBSTIR_TESTING_PROVIDER` points at a non-default provider, the spec installs that provider; otherwise it overrides the default testing package.
 
 ## Notes
 
