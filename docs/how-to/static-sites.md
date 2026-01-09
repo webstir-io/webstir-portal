@@ -29,6 +29,7 @@ What happens:
   - `dist/frontend/pages/<page>/index.html` (page HTML)
   - `dist/frontend/<page>/index.html` (pretty URL alias)
   - `dist/frontend/index.html` when `pages/home/index.html` exists.
+- Publish injects small inline critical CSS blocks (app shell + docs layout) to reduce layout shifts; full stylesheets still load normally.
 
 ### Content Root (Markdown)
 
