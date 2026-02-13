@@ -31,7 +31,7 @@
 ### 2. Harden Runtime & Automation
 - Wrap up TODOs in the VM runtime (e.g., snapshot support, parallelism toggles) or document intentional gaps.
 - Confirm `framework packages sync/publish` relies solely on registry installs, adding clear logging for auth or registry failures.  
-  - ✅ Default registry install path now logs GH_PACKAGES_TOKEN guidance on failure.
+  - ✅ Default registry install path now logs npmjs auth guidance on failure.
 - (Deferred) Extend CI to run host + provider suites (matrix covering VM + Vitest/Vite) once alternate providers are back in scope.
 
 ### 3. Repository Hygiene
@@ -45,7 +45,7 @@
 
 ## Validation Checklist
 - `dotnet test Tester/Tester.csproj` succeeds with default and Vitest providers.
-- `webstir test` on a clean workspace installs packages from the registry only (requires `GH_PACKAGES_TOKEN`; CLI now surfaces auth guidance when creds are missing).
+- `webstir test` on a clean workspace installs packages from the registry only (npmjs; CLI now surfaces auth guidance when creds are missing).
 - CLI help and docs reference the host/provider setup and point to live packages.
 - GitHub Actions execute the default provider suite on every push (alternate provider matrix deferred).
 

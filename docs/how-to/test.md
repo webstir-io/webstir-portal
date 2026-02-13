@@ -54,7 +54,7 @@ Build the project and execute tests through the Webstir test host. By default th
 ## Known Limitations
 - Snapshot assertions are not yet supported in the default VM provider; track behavior through standard assertions or adopt an alternate provider that supplies its own snapshot tooling.
 - Tests execute serially today. Parallel execution toggles are planned but not yet exposed—expect sequential runs until the runtime grows explicit parallel orchestration.
-- Registry installs require GitHub Packages credentials while the framework packages remain private. Ensure `GH_PACKAGES_TOKEN` (or `NODE_AUTH_TOKEN`) is available before running `webstir install`/`webstir test` in clean environments.
+- Registry installs now resolve from npmjs. Ensure your `.npmrc` points `@webstir-io` to `https://registry.npmjs.org`; provide `NPM_TOKEN` only for publish workflows.
 
 ## Outputs
 - Exit code 0 on success; non-zero on failures.

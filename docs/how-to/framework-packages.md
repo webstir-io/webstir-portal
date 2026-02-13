@@ -15,7 +15,7 @@ This guide explains how maintainers rebuild the frontend, backend, and testing p
    - The command runs the workspace’s package manager install (`pnpm install --frozen-lockfile` by default) and `npm run build` in each package directory, then rewrites `framework-packages.json` and `Engine/Resources/package.json` with the new versions and caret specifiers.
    - Set `WEBSTIR_FRONTEND_REGISTRY_SPEC`, `WEBSTIR_TEST_REGISTRY_SPEC`, or `WEBSTIR_BACKEND_REGISTRY_SPEC` before running if you need to override the default `<name>@<version>` registry specifier (for example, to target a dist-tag during validation).
 4. **Verify metadata** – Run `dotnet run --project Framework/Framework.csproj -- packages verify` to confirm that the package sources, manifest entries, template dependencies, and repository state are aligned. The verifier also ensures no legacy tarball assets remain.
-5. **Publish packages** – Run `dotnet run --project Framework/Framework.csproj -- packages publish` to bump versions, rebuild metadata, and publish any missing releases. Add `--dry-run` to preview without touching files or hitting the registry, and pass `--bump <patch|minor|major>` (or `--set-version <x.y.z>`) when you need to override the automatic bump detection. Ensure `GH_PACKAGES_TOKEN` is available before attempting to publish; the command surfaces actionable errors if authentication or `.npmrc` configuration is missing.
+5. **Publish packages** – Run `dotnet run --project Framework/Framework.csproj -- packages publish` to bump versions, rebuild metadata, and publish any missing releases. Add `--dry-run` to preview without touching files or hitting the registry, and pass `--bump <patch|minor|major>` (or `--set-version <x.y.z>`) when you need to override the automatic bump detection. Ensure `NPM_TOKEN` is available before attempting to publish; the command surfaces actionable errors if authentication or `.npmrc` configuration is missing.
 6. **Commit artifacts** – Include the updated package sources, lockfiles, `Framework/Packaging/framework-packages.json`, and `Engine/Resources/package.json` in your PR. No tarballs are generated or committed in the registry-only flow.
 
 ## Automate Releases
@@ -39,7 +39,7 @@ This guide explains how maintainers rebuild the frontend, backend, and testing p
 - Override the tool for a single run with `webstir install --package-manager pnpm@10.5.2` (or `-m pnpm@10.5.2`); omit the version to use the repo’s `packageManager` metadata.
 
 ## Registry Notes
-- Framework installs now rely on registry packages. Configure `.npmrc` with the appropriate registry URL and authentication token (currently `GH_PACKAGES_TOKEN` for GitHub Packages).
+- Framework installs now rely on npmjs registry packages. Configure `.npmrc` with `@webstir-io:registry=https://registry.npmjs.org`.
 - For Sandbox or CI scenarios, provision the token and `.npmrc` before executing `framework packages publish` or `webstir install`.
 
 ## Verify Changes

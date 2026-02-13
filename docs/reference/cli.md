@@ -122,7 +122,7 @@ Notes:
 - Use `--clean` to remove the cached `.webstir/` workspace directory before reinstalling (cannot be combined with `--dry-run`).
 - Override the tool for a single run with `--package-manager pnpm@10.5.2` (or `-m pnpm@10.5.2`); omit `@version` to use the default Corepack-discovered binary.
 - Set `WEBSTIR_PACKAGE_MANAGER=pnpm@10.5.2 webstir install` to persist the override for the current process; leave unset to fall back on `package.json` metadata or lockfiles.
-- Ensure `.npmrc` is configured with credentials (for GitHub Packages, export `GH_PACKAGES_TOKEN`) so registry installs succeed.
+- Ensure `.npmrc` is configured with credentials (when publishing, provide `NPM_TOKEN`) so registry operations succeed.
 
 ### publish
 Usage: `webstir publish`
@@ -224,7 +224,7 @@ What it does:
 
 Notes:
 - Provide a workspace path to reuse an existing project instead of copying the example.
-- Requires local access to the framework packages; configure `.npmrc` or set `GH_PACKAGES_TOKEN` when registry installs are needed.
+- Requires local access to the framework packages; configure `.npmrc` for npmjs registry installs.
 
 ## Dev Server & Watch
 - Serves `build/` over ASP.NET Core with an SSE endpoint for live reload.
