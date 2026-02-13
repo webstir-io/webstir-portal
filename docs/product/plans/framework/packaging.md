@@ -31,8 +31,8 @@
 - If the registry install fails or credentials are missing, the CLI surfaces a clear error with remediation steps (token required, link to docs).
 
 ### Auth & Config
-- `.npmrc` continues to point `@webstir-io` to GitHub Packages and requires `GH_PACKAGES_TOKEN` during the private phase. Corepack users should run `corepack enable` so pnpm is available without a global install.
-- `PackageBuilder` reads the registry URL and access mode from environment variables or CLI flags to ease the eventual switch to npmjs.
+- `.npmrc` points `@webstir-io` to `https://registry.npmjs.org`; provide `NPM_TOKEN` for publish workflows. Corepack users should run `corepack enable` so pnpm is available without a global install.
+- `PackageBuilder` reads the registry URL and access mode from environment variables or CLI flags.
 - Scripts emit friendly warnings when auth variables are unset and skip publish gracefully.
 
 ## Workstreams
@@ -55,7 +55,7 @@
    - Remove `Framework/out` from `.gitignore` once the directory disappears.
 6. **Docs & Dev Onboarding**
    - Update `docs/how-to/package-synchronization.md` and `docs/how-to/framework-packages.md` to describe the registry-first flow and credential requirements.
-   - Document how to set `GH_PACKAGES_TOKEN`, how publishing works now, and call out the future switch to the public registry.
+   - Document how to set `NPM_TOKEN` and how publishing works now.
 7. **Testing & rollout**
    - Add/adjust integration tests to validate installer behavior with registry installs (mock success/failure).
    - Run through `webstir init/install/watch` manually with and without valid auth to confirm error messaging.

@@ -20,7 +20,7 @@ This guide covers the end-to-end workflow for rebuilding and publishing the fram
    - The verifier ensures package directories, manifest entries, template dependencies, and the repository state are aligned.
    - The check also confirms that no legacy tarball assets remain in the repo.
 5. When you are ready to publish the new versions, run `framework packages publish`.
-   - Publishing pushes each package to the configured registry (GitHub Packages by default) if that version is missing. Export `GH_PACKAGES_TOKEN` so npm can authenticate.
+   - Publishing pushes each package to the configured registry (npmjs by default) if that version is missing. Export `NPM_TOKEN` so npm can authenticate.
 6. Commit the updated package sources, lockfiles, `Framework/Packaging/framework-packages.json`, and `Engine/Resources/package.json`.
 
 ## Install In A Workspace
@@ -30,7 +30,7 @@ This guide covers the end-to-end workflow for rebuilding and publishing the fram
 - Use `webstir install --clean` to delete the cached `.webstir/` directory before reinstalling.
 
 ## Registry Requirements
-- Framework installations now rely on registry packages. Configure `.npmrc` with the appropriate registry URL and credentials (currently GitHub Packages via `GH_PACKAGES_TOKEN`). Corepack users should run `corepack enable` so pnpm is available.
+- Framework installations now rely on registry packages. Configure `.npmrc` with `@webstir-io:registry=https://registry.npmjs.org`. Corepack users should run `corepack enable` so pnpm is available.
 - Provide the token and `.npmrc` to CI or sandbox environments before executing `framework packages publish` or `webstir install`.
 
 ## Verify Changes

@@ -36,7 +36,7 @@
    - Track per-package release results (bumped version, tarball path, publish status) for downstream reporting.
 
 4. **Publish integration**
-   - Handle npm auth detection (`GH_PACKAGES_TOKEN`, `.npmrc`) once per run with clear remediation messages.
+   - Handle npm auth detection (`NPM_TOKEN`, `.npmrc`) once per run with clear remediation messages.
    - Publish each touched package conditionally; gather results into a single summary.
    - Update release notes/changelog snippets per package where possible.
 
