@@ -1,5 +1,12 @@
 # Webstir Portal
 
+> This repository is legacy and no longer the source of truth.
+> Active development has moved to the canonical Webstir monorepo:
+> [webstir-io/webstir](https://github.com/webstir-io/webstir)
+>
+> Portal source location in the monorepo:
+> `apps/portal`
+
 Docs hub for the Webstir ecosystem, built with Docusaurus and deployed to GitHub Pages (custom domain `webstir.io`). Content covers tutorials, how-to guides, reference material, explanations, and product plans.
 
 ## Run locally
